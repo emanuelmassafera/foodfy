@@ -9,7 +9,7 @@ body{
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 150vh;
 }
 
 header {
@@ -41,16 +41,6 @@ header .sobre {
     line-height: 30px;
 }
 
-.sobre:hover {
-    font-weight: bold;
-    transition: font-weight 300ms;
-}
-
-.receitas:hover {
-    font-weight: bold;
-    transition: font-weight 300ms;
-}
-
 header .receitas {
     position: absolute;
     left: 34.2%;
@@ -61,75 +51,22 @@ header .receitas {
     text-decoration: none;
     color: #111111;
     line-height: 30px;
-}
-
-.info {
-    background-color: #FBDFDB;
-    width: 940px;
-    height: 366px;
-    border-radius: 30px;
-    margin: 30px auto;
-    text-align: center;
-    position: relative;
-    opacity: 100%;
-}
-
-.info h1{
-    font-size: 32px;
-    line-height: 38px;
-    color: #111111;
     font-weight: bold;
-    position: absolute;
-    margin: 10.6% 41.1% 19.1% 4.3%;
-    opacity: 100%;
-}
-
-.info p {
-    opacity: 70%;
-    color: #000000;
-    font-size: 18px;
-    line-height: 28px;
-    position: absolute;
-    margin: 15% 40.3% 10.6% 4.3%;
-    max-width: 316px;
-    text-align: left;
-}
-
-.info img {
-    width: 216px;
-    height: 300px;
-    position: absolute;
-    margin: 7% 7.1% 0% 14.6%;
-}
-
-.accessed {
-    width: 940px;
-    margin: 40px auto;
-    text-align: center;
-    position: relative;
-}
-
-.accessed h2 {
-    opacity: 100%;
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: bold;
-    color: #111111;
-    position: absolute;
-    left: 0;
-    margin-bottom: 15px;
 }
 
 .cards {
     width: 940px;
     height: 450px;
-    margin: 83px auto;
+    margin: 40px auto;
     position: relative;
     opacity: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    padding-bottom: 40px;
+}
+
+.card {
+    cursor: pointer;
 }
 
 .card img {
@@ -152,6 +89,61 @@ header .receitas {
     line-height: 16px;
     color: #777777;
     margin-top: 5px;
+}
+
+.modal-overlay {
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    background-color: white;
+    opacity: 100%;
+    border-radius: 16px;
+    width: 30.1%;
+    height: 44.8%;
+    margin: 30vh auto;
+    position: relative;
+    text-align: center;
+    padding: 30px 30px 5px 30px;
+}
+
+.modal img{
+    border-radius: 50px;
+    width: 100%;
+    height: 200px;
+}
+
+.modal-card-title p {
+    font-size: 24px;
+    line-height: 28px;
+    color: #111111;
+    margin-top: 10px;
+}
+
+.modal-card-info p{
+    font-size: 18px;
+    color: #777777;
+    line-height: 21px;
+    margin-top: 2px;
+    margin-bottom: 35px;
+}
+
+.close-modal a {
+    font-size: 16px;
+    line-height: 19px;
+    color: #999999;
+    cursor: pointer;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .credits {
