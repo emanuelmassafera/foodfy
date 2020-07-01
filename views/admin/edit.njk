@@ -1,0 +1,79 @@
+{% extends "admin/layout.njk" %}
+
+{% block head %}
+    <title>Edit</title>
+    <link rel="stylesheet" href="/admin/edit.css">
+{% endblock head %}
+
+{% block content %}
+    <form class="recipe" method="POST" action="/admin/recipes?_method=PUT">
+        <input type="hidden" name="id" value="{{recipe.id}}">
+
+        <section class="title">
+            <h2>Editando receita</h2>
+            <div class="buttons">
+                <button id="btn-delete" type="submit" form="form-delete">Deletar</button>
+                <button type="submit">Salvar receita</button>
+            </div>
+        </section>
+
+        <div class="name">
+            <h3>Nome da receita</h3>
+
+            <input type="text" name="title" value="{{recipe.title}}">
+        </div>
+
+        <div class="author">
+            <h3>Autor</h3>
+
+            <input type="text" name="author" value="{{recipe.author}}">
+        </div>
+
+        <div class="image">
+            <h3>Imagem</h3>
+
+            <input type="url" name="image" value="{{recipe.image}}">
+        </div>
+
+        <div class="_ingredients">
+            <h3>Ingredientes</h3>
+
+            <section class="ingredients">
+                <section class="ingredient">
+                    {% for ingredient in recipe.ingredients %}
+                        <input type="text" name="ingredients[]" value="{{ingredient}}"/>
+                    {% endfor %}
+                </section>
+            </section>
+
+            <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+        </div>
+
+        <div class="_steps">
+            <h3>Modo de preparo</h3>
+
+            <section class="steps">
+                <section class="step">
+                    {% for step in recipe.preparation %}
+                        <input type="text" name="preparation[]" value="{{step}}"/>
+                    {% endfor %}
+                </section>
+            </section>
+
+            <button type="button" class="add-step">Adicionar novo passo</button>
+        </div>
+
+        <div class="information">
+            <h3>Informações adicionais</h3>
+
+            <textarea name="information">{{recipe.information}}</textarea>
+        </div>
+    </form>
+
+    <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{recipe.id}}">
+    </form>
+
+    <script src="/admin/create.js"></script>
+
+{% endblock content %}

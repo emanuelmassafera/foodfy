@@ -1,0 +1,40 @@
+{% extends "admin/layout.njk" %}
+
+{% block head %}
+    <title>Recipes</title>
+    <link rel="stylesheet" href="/admin/listing.css">
+{% endblock head %}
+
+{% block content %}
+    <section class="content">
+        <div class="title">
+            <h2>Gerenciar receitas</h2>
+        </div>
+
+        <section class="cards">
+            {% for recipe in recipes %}
+                <div class="card" id="{{recipes.indexOf(recipe)}}">
+                    <div class="card-image">
+                        <img class="card-image-id" src="{{recipe.image}}" alt="">
+                    </div>
+                    <div>
+                        <div class="card-title">
+                            <p class="card-title-id">{{recipe.title}}</p>
+                        </div>
+
+                        <div class="card-info">
+                            <p class="card-info-id">por
+                                {{recipe.author}}</p>
+                        </div>
+
+                        <div class="card-button-view">
+                            <a href="#">Visualizar</a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </section>
+    </section>
+
+{% endblock content %}
