@@ -77,6 +77,7 @@ header img {
 }
 
 .recipe div input, textarea {
+    padding-left: 20px;
     margin-top: 10px;
     width: 100%;
     border: 1px solid #DDDDDD;
@@ -89,6 +90,8 @@ header img {
 }
 
 textarea {
+    padding-top: 18px;
+    padding-right: 40px;
     height: 257px;
 }
 

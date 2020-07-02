@@ -47,7 +47,7 @@ exports.post = function (req, res) {
     const keys = Object.keys(req.body);
 
     for (key of keys) {
-        if (req.body[key] == "") {
+        if (req.body[key] == "" && key != "information") {
             return res.send("Please, fill all fields!");
         }
     }
@@ -108,5 +108,19 @@ exports.put = function (req, res) {
 
 // DELETE
 exports.delete = function (req, res) {
-    
+    const { id } = req.body;
+
+    const filteredRecipes = data.recipes.filter(function(recipe) {
+        return recipe.id != id;
+    });
+
+    data.recipes = filteredRecipes;
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
+        if (err) {
+            return res.send("Write file error!");
+        }
+
+        return res.redirect("/admin/recipes");
+    })
 }

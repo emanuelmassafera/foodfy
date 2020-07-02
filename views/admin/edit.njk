@@ -11,6 +11,7 @@
 
         <section class="title">
             <h2>Editando receita</h2>
+
             <div class="buttons">
                 <button id="btn-delete" type="submit" form="form-delete">Deletar</button>
                 <button type="submit">Salvar receita</button>
@@ -39,11 +40,11 @@
             <h3>Ingredientes</h3>
 
             <section class="ingredients">
-                <section class="ingredient">
-                    {% for ingredient in recipe.ingredients %}
+                {% for ingredient in recipe.ingredients %}
+                    <section class="ingredient">
                         <input type="text" name="ingredients[]" value="{{ingredient}}"/>
-                    {% endfor %}
-                </section>
+                    </section>
+                {% endfor %}
             </section>
 
             <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
@@ -53,11 +54,13 @@
             <h3>Modo de preparo</h3>
 
             <section class="steps">
-                <section class="step">
-                    {% for step in recipe.preparation %}
+                {% for step in recipe.preparation %}
+
+                    <section class="step">
                         <input type="text" name="preparation[]" value="{{step}}"/>
-                    {% endfor %}
-                </section>
+                    </section>
+                {% endfor %}
+
             </section>
 
             <button type="button" class="add-step">Adicionar novo passo</button>
@@ -74,6 +77,6 @@
         <input type="hidden" name="id" value="{{recipe.id}}">
     </form>
 
-    <script src="/admin/create.js"></script>
+    <script src="/admin/edit.js"></script>
 
 {% endblock content %}

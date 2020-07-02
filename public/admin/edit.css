@@ -36,12 +36,13 @@ header img {
 
 .recipe {
     width: 940px;
-    margin: 15px auto 50px auto;
+    margin: 0px auto 50px auto;
 }
 
 .title {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 }
 
 .title h2 {
@@ -53,7 +54,8 @@ header img {
 }
 
 .title .buttons {
-    display: flex;
+    display: inline-block;
+    top: 0px;
 }
 
 .title .buttons button {
@@ -68,6 +70,10 @@ header img {
     cursor: pointer;
 }
 
+.title .buttons #btn-delete {
+    background-color: #DC4747;
+} 
+
 .recipe div {
     margin-top: 30px;
 }
@@ -81,6 +87,7 @@ header img {
 }
 
 .recipe div input, textarea {
+    padding-left: 20px;
     margin-top: 10px;
     width: 100%;
     border: 1px solid #DDDDDD;
@@ -93,6 +100,8 @@ header img {
 }
 
 textarea {
+    padding-top: 18px;
+    padding-right: 40px;
     height: 257px;
 }
 
