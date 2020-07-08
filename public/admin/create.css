@@ -133,12 +133,34 @@ header {
     line-height: 19px;
     font-weight: bold;
     color: #555555;
+    box-sizing: border-box;
+}
+
+select:required:invalid {
+    color: #999999;
+    font-weight: normal;
+  }
+
+  option[value=""][disabled] {
+    display: none;
+  }
+
+  option {
+    color: #555555;
+  }
+
+select .none {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #999999;
 }
 
 textarea {
     padding-top: 18px;
     padding-right: 40px;
     height: 257px;
+    resize: none;
 }
 
 .recipe div button {

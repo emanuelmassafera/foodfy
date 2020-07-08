@@ -5,9 +5,11 @@ const { date } = require("../../lib/utils");
 module.exports = {
 
     all(callback) {
-        const query = `SELECT * FROM chefs`;
+        const query = `SELECT chefs.*, count(recipes) AS total_recipes  
+        FROM chefs LEFT JOIN recipes ON (chefs.id = recipes.chef_id) 
+        GROUP BY chefs.id`;
 
-        db.query(query, function(err, results) {
+        db.query(query, function (err, results) {
             if (err) throw `Database Error! ${err}`;
 
             callback(results.rows);
@@ -30,7 +32,7 @@ module.exports = {
             date(Date.now()).iso
         ];
 
-        db.query(query, values, function(err, results) {
+        db.query(query, values, function (err, results) {
             if (err) throw `Database Error! ${err}`;
 
             callback(results.rows[0]);
@@ -38,13 +40,22 @@ module.exports = {
     },
 
     find(id, callback) {
-        db.query(`SELECT chefs.*, count(recipes) AS total_recipes 
+        db.query(`SELECT chefs.*, count(recipes) AS total_recipes  
         FROM chefs LEFT JOIN recipes ON (chefs.id = recipes.chef_id) 
         WHERE chefs.id=$1  
-        GROUP BY chefs.id`, [id], function(err, results) {
+        GROUP BY chefs.id`, [id], function (err, results) {
             if (err) throw `Database Error! ${err}`;
-            
+
             callback(results.rows[0]);
+        });
+    },
+
+    findRecipes(id, callback) {
+        db.query(`SELECT recipes.* FROM recipes 
+        WHERE recipes.chef_id=$1`, [id], function (err, results) {
+            if (err) throw `Database Error! ${err}`;
+
+            callback(results.rows);
         });
     },
 
@@ -62,7 +73,7 @@ module.exports = {
             data.id
         ];
 
-        db.query(query, values, function(err, results) {
+        db.query(query, values, function (err, results) {
             if (err) throw `Database Error! ${err}`;
 
             callback(results.rows[0]);

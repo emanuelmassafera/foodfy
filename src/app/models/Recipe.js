@@ -8,7 +8,7 @@ module.exports = {
         const query = `SELECT recipes.*, chefs.name AS chef_name 
         FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id)`;
 
-        db.query(query, function(err, results) {
+        db.query(query, function (err, results) {
             if (err) throw `Database Error! ${err}`;
 
             callback(results.rows);
@@ -39,7 +39,7 @@ module.exports = {
             date(Date.now()).iso
         ];
 
-        db.query(query, values, function(err, results) {
+        db.query(query, values, function (err, results) {
             if (err) throw `Database Error! ${err}`;
 
             callback(results.rows[0]);
@@ -49,10 +49,30 @@ module.exports = {
     find(id, callback) {
         db.query(`SELECT recipes.*, chefs.name AS chef_name 
         FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
-        WHERE recipes.id=$1`, [id], function(err, results) {
+        WHERE recipes.id=$1`, [id], function (err, results) {
             if (err) throw `Database Error! ${err}`;
-            
+
             callback(results.rows[0]);
+        });
+    },
+
+    findBy(filter, callback) {
+        let filterQuery = "",
+            totalQuery = `SELECT recipes.*, chefs.name AS chef_name 
+            FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id) `;
+
+        if (filter) {
+            filterQuery = `WHERE recipes.title ILIKE '%${filter}%'`;
+
+            totalQuery = `SELECT recipes.*, chefs.name AS chef_name 
+            FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
+            ${filterQuery}`;
+        }
+
+        db.query(totalQuery, function (err, results) {
+            if (err) throw `Database Error! ${err}`;
+
+            callback(results.rows);
         });
     },
 
@@ -78,7 +98,7 @@ module.exports = {
             data.id
         ];
 
-        db.query(query, values, function(err, results) {
+        db.query(query, values, function (err, results) {
             if (err) throw `Database Error! ${err}`;
 
             callback(results.rows[0]);

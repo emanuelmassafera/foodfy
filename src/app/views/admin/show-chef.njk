@@ -25,21 +25,25 @@
                 Nenhuma receita cadastrada
             {% endif %}
             {% if chef.total_recipes == 1%}
-                {{chef.total_recipes}} receita
+                {{chef.total_recipes}}
+                receita
             {% endif %}
             {% if chef.total_recipes > 1%}
-                {{chef.total_recipes}} receitas
-            {% endif %}</p>
-            </p>
-    </div>
+                {{chef.total_recipes}}
+                receitas
+            {% endif %}
+        </p>
+    </p>
+</div>
 
+{% if chef.total_recipes != 0 %}
     <div class="title">
         <h2>Receitas</h2>
     </div>
 
     <section class="cards">
         {% for recipe in recipes %}
-            <div class="card" id="{{recipes.indexOf(recipe)}}">
+            <div class="card">
                 <div class="card-image">
                     <img class="card-image-id" src="{{recipe.image}}" alt="">
                 </div>
@@ -50,7 +54,7 @@
 
                     <div class="card-info">
                         <p class="card-info-id">por
-                            {{recipe.author}}</p>
+                            {{chef.name}}</p>
                     </div>
 
                     <div class="card-button-view">
@@ -61,6 +65,8 @@
             </div>
         {% endfor %}
     </section>
+{% endif %}
+
 </section>
 
 {% endblock content %}

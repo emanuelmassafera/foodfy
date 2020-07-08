@@ -63,6 +63,53 @@ header .receitas {
     line-height: 30px;
 }
 
+header .chefs {
+    position: absolute;
+    left: 45.2%;
+    width: 42px;
+    height: 19px;
+    opacity: 100%;
+    font-size: 16px;
+    text-decoration: none;
+    color: #111111;
+    line-height: 30px;
+}
+
+.chefs:hover {
+    font-weight: bold;
+    transition: font-weight 300ms;
+}
+
+header .filter {
+    position: absolute;
+    right: 0;
+}
+
+header .filter input {
+    width: 246px;
+    height: 37px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    color: #999999;
+    font-size: 14px;
+    line-height: 16px;
+    padding-left: 15px;
+    margin-right: 8px;
+}
+
+header .filter button {
+    background-color: #6558C3;
+    color: white;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+    text-align: right;
+    padding: 9px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .info {
     background-color: #FBDFDB;
     width: 940px;
@@ -123,7 +170,7 @@ header .receitas {
 .cards {
     width: 940px;
     height: 450px;
-    margin: 83px auto;
+    margin: 20px auto 50px auto;
     position: relative;
     opacity: 100%;
     display: grid;

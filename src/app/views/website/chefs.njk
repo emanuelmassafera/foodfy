@@ -1,0 +1,42 @@
+{% extends "website/layout.njk" %}
+
+{% block head %}
+    <title>Chefs</title>
+    <link rel="stylesheet" href="/website/chefs.css">
+{% endblock head %}
+
+{% block content %}
+    <section class="content">
+        <section class="cards">
+            {% for chef in chefs %}
+                <div class="card">
+                    <div class="card-image">
+                        <img class="card-image-id" src="{{chef.avatar_url}}" alt="">
+                    </div>
+                    <div>
+                        <div class="card-title">
+                            <p class="card-title-id">{{chef.name}}</p>
+                        </div>
+
+                        <div class="card-info">
+                            <p>
+                                {% if chef.total_recipes == 0%}
+                                    Nenhuma receita cadastrada
+                                {% endif %}
+                                {% if chef.total_recipes == 1%}
+                                    {{chef.total_recipes}}
+                                    receita
+                                {% endif %}
+                                {% if chef.total_recipes > 1%}
+                                    {{chef.total_recipes}}
+                                    receitas
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </section>
+    </section>
+{% endblock content %}

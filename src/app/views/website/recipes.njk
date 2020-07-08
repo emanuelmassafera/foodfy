@@ -6,6 +6,19 @@
 {% endblock head %}
 
 {% block content %}
+
+    {% if filter %}
+        <div class="search">
+            <p>Buscando por "{{filter}}"</p>
+        </div>
+    {% endif %}
+
+    {% if recipes.length == 0 %}
+        <div class="notfound">
+            <p>Nenhuma receita encontrada!</p>
+        </div>
+    {% endif %}
+
     <section class="cards">
         {% for recipe in recipes %}
             <div class="card" id="{{recipe.id}}">
@@ -16,7 +29,7 @@
                     <p class="card-title-id">{{recipe.title}}</p>
                 </div>
                 <div class="card-info">
-                    <p class="card-info-id">por {{recipe.author}}</p>
+                    <p class="card-info-id">por {{recipe.chef_name}}</p>
                 </div>
             </div>
         {% endfor %}

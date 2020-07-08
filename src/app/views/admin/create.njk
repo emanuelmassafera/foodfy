@@ -16,18 +16,19 @@
         <div class="name">
             <h3>Nome da receita</h3>
 
-            <input type="text" name="title">
+            <input type="text" name="title" required>
         </div>
 
         <div class="image">
             <h3>Imagem da receita</h3>
 
-            <input type="url" name="image">
+            <input type="url" name="image" required>
         </div>
 
         <div class="chef">
             <h3>Chef</h3>
-            <select name="chef">
+            <select name="chef" required>
+                <option value="" disabled selected hidden>Selecione um chef</option>
                 {% for chef in chefOptions %}
                     <option value="{{chef.id}}" {% if recipe.chef_id == chef.id %} selected="selected" {% endif %}>{{chef.name}}</option>
                 {% endfor %}
@@ -39,7 +40,7 @@
 
             <section class="ingredients">
                 <section class="ingredient">
-                    <input type="text" name="ingredients[]"/>
+                    <input type="text" name="ingredients[]" required/>
                 </section>
             </section>
 
@@ -51,7 +52,7 @@
 
             <section class="steps">
                 <section class="step">
-                    <input type="text" name="preparation[]"/>
+                    <input type="text" name="preparation[]" required/>
                 </section>
             </section>
 

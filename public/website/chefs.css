@@ -39,7 +39,6 @@ header .sobre {
     text-decoration: none;
     color: #111111;
     line-height: 30px;
-    font-weight: bold;
 }
 
 header .receitas {
@@ -64,53 +63,50 @@ header .chefs {
     text-decoration: none;
     color: #111111;
     line-height: 30px;
+    font-weight: bold;
 }
 
 header .filter {
     display: none;
 }
 
-.about {
+.content {
     width: 940px;
     margin: 50px auto;
-    text-align: left;
-    position: relative;
-    opacity: 100%;
+}
+
+.cards {
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
 }
 
-.about-foodfy h2{
+.card {
+    display: grid;
+    grid-template-columns: 65px 1fr;
+    gap: 20px;
+}
+
+.card img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.card-title p {
+    margin-top: 8px;
+    margin-bottom: 5px;
     opacity: 100%;
-    font-weight: bold;
     color: #111111;
-    font-size: 24px;
-    line-height: 28px;
-}
-
-.about p {
     font-size: 18px;
-    opacity: 100%;
-    color: #444444;
-    line-height: 28px;
-    margin-top: 20px;
+    line-height: 21px;
 }
 
-.how-foodfy-started h2{
-    opacity: 100%;
-    color: #111111;
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.our-recipes h2 {
-    opacity: 100%;
-    color: #111111;
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: bold;
-    margin-top: 20px;
+.card-info p {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #666666;
 }
 
 .credits {
@@ -128,3 +124,4 @@ header .filter {
     line-height: 16px;
     padding: 22px;
 }
+

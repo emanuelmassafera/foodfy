@@ -54,14 +54,20 @@ header .receitas {
     font-weight: bold;
 }
 
-.sobre:hover {
-    font-weight: bold;
-    transition: font-weight 300ms;
+header .chefs {
+    position: absolute;
+    left: 45.2%;
+    width: 42px;
+    height: 19px;
+    opacity: 100%;
+    font-size: 16px;
+    text-decoration: none;
+    color: #111111;
+    line-height: 30px;
 }
 
-.receitas:hover {
-    font-weight: bold;
-    transition: font-weight 300ms;
+header .filter {
+    display: none;
 }
 
 .image {

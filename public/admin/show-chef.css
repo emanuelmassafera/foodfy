@@ -145,6 +145,8 @@ header {
 }
 
 .title h2 {
+    width: 940px;
+    margin: 0px auto 30px auto;
     font-weight: bold;
     font-size: 24px;
     line-height: 28px;
@@ -153,10 +155,14 @@ header {
 }
 
 .cards {
+    width: 940px;
+    margin: 0px auto 300px auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+
+
 
 .card {
     display: grid;
