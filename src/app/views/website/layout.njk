@@ -3,10 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        
-        {% block head %}
 
-        {% endblock head %}
+        {% block head %}{% endblock head %}
 
     </head>
     <body>
@@ -14,16 +12,20 @@
             <a href="/">
                 <img src="../../../assets/logo.png" alt="">
             </a>
-            <a class="sobre" href="/about">Sobre</a>
-            <a class="receitas" href="/recipes">Receitas</a>
+
+            <div class="links">
+                <a class="sobre" href="/about">Sobre</a>
+                <a class="receitas" href="/recipes">Receitas</a>
+            </div>
+
         </header>
 
-        {% block content %}
-
-        {% endblock content %}
+        {% block content %}{% endblock content %}
 
         <section class="credits">
             <p>Todos os direitos reservados, receitas Foodfy</p>
         </section>
+
+        <script src="/script.js"></script>
     </body>
 </html>

@@ -1,0 +1,30 @@
+{% extends "admin/layout.njk" %}
+
+{% block head %}
+    <title>Create</title>
+    <link rel="stylesheet" href="/admin/create.css">
+{% endblock head %}
+
+{% block content %}
+    <form class="recipe" method="POST" action="/admin/chefs">
+        <section class="title">
+            <h2>Criando chef</h2>
+
+            <button type="submit">Salvar chef</button>
+        </section>
+
+        <div class="name">
+            <h3>Nome</h3>
+
+            <input type="text" name="name">
+        </div>
+
+        <div class="image">
+            <h3>Avatar</h3>
+
+            <input type="url" name="avatar_url">
+        </div>
+
+    </form>
+
+{% endblock content %}

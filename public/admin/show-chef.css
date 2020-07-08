@@ -80,9 +80,68 @@ header {
     transition: font-weight 300ms;
 }
 
-.content {
+.top {
     width: 940px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top h2 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #111111;
+    opacity: 100%;
+}
+
+.top a {
+    background-color: #6558C3;
+    color: white;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+    text-align: right;
+    padding: 9px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.image {
+    width: 940px;
+    height: 200px;
+    text-align: center;
+    margin: 50px auto 30px auto;
+    position: relative;
+}
+.image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.info {
+    width: 940px;
+    text-align: center;
     margin: 0px auto 50px auto;
+    position: relative;
+}
+
+.info .name{
+    opacity: 100%;
+    color: #111111;
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: bold;
+}
+
+.info .recipes {
+    opacity: 100%;
+    color: #777777;
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 4px;
 }
 
 .title h2 {

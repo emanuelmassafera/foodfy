@@ -19,16 +19,19 @@
             <input type="text" name="title">
         </div>
 
-        <div class="author">
-            <h3>Autor</h3>
-
-            <input type="text" name="author">
-        </div>
-
         <div class="image">
-            <h3>Imagem</h3>
+            <h3>Imagem da receita</h3>
 
             <input type="url" name="image">
+        </div>
+
+        <div class="chef">
+            <h3>Chef</h3>
+            <select name="chef">
+                {% for chef in chefOptions %}
+                    <option value="{{chef.id}}" {% if recipe.chef_id == chef.id %} selected="selected" {% endif %}>{{chef.name}}</option>
+                {% endfor %}
+            </select>
         </div>
 
         <div class="_ingredients">

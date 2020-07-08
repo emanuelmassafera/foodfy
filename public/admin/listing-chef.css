@@ -95,36 +95,29 @@ header {
 
 .cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
 }
 
 .card {
     display: grid;
-    grid-template-columns: 172px 1fr;
+    grid-template-columns: 65px 1fr;
     gap: 20px;
 }
 
 .card img {
-    width: 172px;
-    height: 80px;
-    border-radius: 8.57px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
 }
 
 .card-title p {
+    margin-top: 8px;
+    margin-bottom: 10px;
     opacity: 100%;
     color: #111111;
     font-size: 18px;
     line-height: 21px;
-}
-
-.card-info p {
-    opacity: 100%;
-    font-size: 14px;
-    line-height: 16px;
-    color: #777777;
-    margin-top: 5px;
-    margin-bottom: 10px;
 }
 
 .card-button-view a {
