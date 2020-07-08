@@ -1,5 +1,3 @@
-const data = require("../../../data.json");
-const fs = require("fs");
 const Recipe = require("../models/Recipe");
 const Chef = require("../models/Chef");
 
@@ -133,9 +131,14 @@ module.exports = {
     },
 
     deleteChef(req, res) {
-
-        Chef.delete(req.body.id, function () {
-            return res.redirect("/admin/chefs");
+        Chef.find(req.body.id, function (chef) {
+            if (chef.total_recipes == 0) {
+                Chef.delete(req.body.id, function () {
+                    return res.redirect("/admin/chefs");
+                });
+            } else {
+                return res.send("Chefs who have recipes cannot be deleted");
+            }
         });
     },
 

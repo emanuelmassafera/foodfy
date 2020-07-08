@@ -211,6 +211,25 @@ header .filter button {
     visibility: visible;
 }
 
+.pagination {
+    display: flex;
+    width: 940px;
+    margin: auto auto 300px auto;
+    justify-content: center;
+}
+
+.pagination a,
+.pagination span {
+    text-decoration: none;
+    color: var(#111111);
+    margin: 8px;
+}
+
+.pagination a:hover {
+    filter: brightness(0.3);
+    border-bottom: 1px solid #111111;
+}
+
 .credits {
     margin-top: auto;
     background-color: #EEEEEE;
