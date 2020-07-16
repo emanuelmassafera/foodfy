@@ -1,4 +1,4 @@
 # foodfy
 Site completo de uma empresa de receitas chamada Foodfy
 
-* Em construção *
+** Em construção **
