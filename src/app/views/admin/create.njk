@@ -6,29 +6,48 @@
 {% endblock head %}
 
 {% block content %}
-    <form class="recipe" method="POST" action="/admin/recipes">
+    <form class="recipe" method="POST" action="/admin/recipes" enctype="multipart/form-data">
         <section class="title">
             <h2>Criando receita</h2>
 
             <button type="submit">Salvar receita</button>
         </section>
 
-        <div class="name">
-            <h3>Nome da receita</h3>
-
-            <input type="text" name="title" required>
-        </div>
-
         <div class="image">
             <h3>Imagem da receita</h3>
 
-            <input type="url" name="image" required>
+            <div class="manager">
+                <div id="photos-upload">
+                    <i class="material-icons">add</i>
+                    <input type="file" name="photos" id="photos-input" multiple="multiple" accept="image/*" onchange="PhotosUpload.handleFileInput(event)">
+                </div>
+
+                <div id="photos-preview">
+                    {% if files %}
+
+                        {% for image in files %}
+                            <div class="photo" id="{{image.id}}">
+                                <img src="{{image.src}}" alt="{{image.name}}">
+                                <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                            </div>
+                        {% endfor %}
+
+                        <input type="hidden" name="removed_files">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="name">
+            <h3>Nome da receita</h3>
+
+            <input type="text" name="title" required="required">
         </div>
 
         <div class="chef">
             <h3>Chef</h3>
-            <select name="chef" required>
-                <option value="" disabled selected hidden>Selecione um chef</option>
+            <select name="chef" required="required">
+                <option value="" disabled="disabled" selected="selected" hidden="hidden">Selecione um chef</option>
                 {% for chef in chefOptions %}
                     <option value="{{chef.id}}" {% if recipe.chef_id == chef.id %} selected="selected" {% endif %}>{{chef.name}}</option>
                 {% endfor %}
@@ -40,7 +59,7 @@
 
             <section class="ingredients">
                 <section class="ingredient">
-                    <input type="text" name="ingredients[]" required/>
+                    <input type="text" name="ingredients[]" required="required"/>
                 </section>
             </section>
 
@@ -52,7 +71,7 @@
 
             <section class="steps">
                 <section class="step">
-                    <input type="text" name="preparation[]" required/>
+                    <input type="text" name="preparation[]" required="required"/>
                 </section>
             </section>
 

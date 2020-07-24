@@ -6,7 +6,7 @@
 {% endblock head %}
 
 {% block content %}
-    <form class="recipe" method="POST" action="/admin/chefs?_method=PUT">
+    <form class="recipe" method="POST" action="/admin/chefs?_method=PUT" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{{chef.id}}">
 
         <section class="title">
@@ -24,10 +24,23 @@
             <input type="text" name="name" value="{{chef.name}}" required>
         </div>
 
-        <div class="image">
+        <div class="image-chef">
             <h3>Avatar</h3>
 
-            <input type="url" name="avatar_url" value="{{chef.avatar_url}}" required>
+            <input type="text" id="chef-edit-placeholder" placeholder="{{files[0].name}}" disabled>
+
+            <div id="photos-upload">
+                <p>Enviar avatar</p>
+                <input 
+                    type="file" 
+                    name="photos" 
+                    id="photos-input" 
+                    multiple="multiple" 
+                    accept="image/*" 
+                    onchange="PhotosUpload.handleFileInput(event)"
+                >
+            </div>
+
         </div>
 
     </form>

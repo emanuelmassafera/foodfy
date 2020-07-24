@@ -6,7 +6,7 @@
 {% endblock head %}
 
 {% block content %}
-    <form class="recipe" method="POST" action="/admin/recipes?_method=PUT">
+    <form class="recipe" method="POST" action="/admin/recipes?_method=PUT" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{{recipe.id}}">
 
         <section class="title">
@@ -18,16 +18,35 @@
             </div>
         </section>
 
+        <div class="image">
+            <h3>Imagem da receita</h3>
+
+            <div class="manager">
+                <div id="photos-upload">
+                    <i class="material-icons">add</i>
+                    <input type="file" name="photos" id="photos-input" multiple="multiple" accept="image/*" onchange="PhotosUpload.handleFileInput(event)">
+                </div>
+
+                <div id="photos-preview">
+                    {% if files %}
+
+                        {% for image in files %}
+                            <div class="photo" id="{{image.id}}">
+                                <img src="{{image.src}}" alt="{{image.name}}">
+                                <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                            </div>
+                        {% endfor %}
+
+                        <input type="hidden" name="removed_files">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
         <div class="name">
             <h3>Nome da receita</h3>
 
             <input type="text" name="title" value="{{recipe.title}}" required>
-        </div>
-
-        <div class="image">
-            <h3>Imagem da receita</h3>
-
-            <input type="url" name="image" value="{{recipe.image}}" required>
         </div>
 
         <div class="chef">
