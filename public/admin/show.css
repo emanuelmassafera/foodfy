@@ -84,13 +84,39 @@ header {
     width: 940px;
     height: 280px;
     text-align: center;
-    margin: 30px auto;
+    margin: 30px auto 8px auto;
     position: relative;
 }
 .image img {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+    object-fit: cover;
+}
+.container-preview {
+    display: flex;
+    width: 940px;
+    margin: 0px auto;
+}
+
+.gallery-preview {
+    display: flex;
+    margin: 0px 0px 0px auto;
+}
+
+.gallery-preview img{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 200ms;
+    margin-left: 10px;
+}
+
+.gallery-preview img:hover, 
+.gallery-preview img.active {
+    opacity: 1; 
 }
 
 .info {
