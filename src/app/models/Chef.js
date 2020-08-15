@@ -44,7 +44,7 @@ module.exports = {
 
     findRecipes(id) {
         return db.query(`SELECT recipes.* FROM recipes 
-        WHERE recipes.chef_id=$1`, [id]);
+        WHERE recipes.chef_id=$1 ORDER BY recipes.created_at DESC`, [id]);
     },
 
     update(data, file_id) {

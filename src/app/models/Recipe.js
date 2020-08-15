@@ -6,7 +6,7 @@ module.exports = {
 
     all(callback) {
         const query = `SELECT recipes.*, chefs.name AS chef_name 
-        FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id)`;
+        FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id) ORDER BY recipes.created_at DESC`;
 
         db.query(query, function (err, results) {
             if (err) throw `Database Error! ${err}`;
@@ -23,8 +23,9 @@ module.exports = {
                 ingredients,
                 preparation,
                 information,
-                created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6) 
+                created_at,
+                updated_at
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7) 
             RETURNING id
         `;
 
@@ -34,6 +35,7 @@ module.exports = {
             data.ingredients,
             data.preparation,
             data.information,
+            date(Date.now()).iso,
             date(Date.now()).iso
         ];
 
@@ -119,10 +121,17 @@ module.exports = {
             ) AS total`;
         }
 
-        query = `SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name 
-        FROM recipes 
-        LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
-        ${filterQuery} LIMIT $1 OFFSET $2`;
+        if (filter) {
+            query = `SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name 
+            FROM recipes 
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
+            ${filterQuery} ORDER BY recipes.updated_at DESC LIMIT $1 OFFSET $2`;
+        } else {
+            query = `SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name 
+            FROM recipes 
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id) 
+            ${filterQuery} ORDER BY recipes.created_at DESC LIMIT $1 OFFSET $2`;
+        }
 
         db.query(query, [limit, offset], function (err, results) {
             if (err) throw `Database Error! ${err}`;
