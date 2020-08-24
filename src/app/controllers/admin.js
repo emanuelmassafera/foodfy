@@ -6,10 +6,25 @@ const File = require("../models/File");
 module.exports = {
     /* ------ Recipes ------ */
 
-    index(req, res) {
-        Recipe.all(function (recipes) {
-            return res.render("admin/listing", { recipes });
-        });
+    async index(req, res) {
+        let results = await Recipe.all();
+        let recipes = results.rows;
+
+        for (let index = 0; index < recipes.length; index++) {
+            results = await Recipe.files(recipes[index].id);
+            const files = results.rows.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }));
+
+            if(files[0]) {
+                recipes[index].image = files[0].src;
+            } else {
+                recipes[index].image = "//placehold.it/500x360";
+            }
+        }
+
+        return res.render("admin/listing", { recipes });
     },
 
     async create(req, res) {

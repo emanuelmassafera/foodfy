@@ -4,15 +4,11 @@ const { date } = require("../../lib/utils");
 
 module.exports = {
 
-    all(callback) {
+    all() {
         const query = `SELECT recipes.*, chefs.name AS chef_name 
         FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id) ORDER BY recipes.created_at DESC`;
 
-        db.query(query, function (err, results) {
-            if (err) throw `Database Error! ${err}`;
-
-            callback(results.rows);
-        });
+        return db.query(query);
     },
 
     create(data) {
