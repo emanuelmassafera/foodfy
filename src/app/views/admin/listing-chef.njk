@@ -9,6 +9,10 @@
     <section class="content">
         <div class="title">
             <h2>Gerenciar chefs</h2>
+
+            {% if sessionIsAdmin.is_admin == true %}
+                <a href="/admin/chefs/create">Novo</a>
+            {% endif %}
         </div>
 
         <section class="cards">

@@ -11,7 +11,9 @@
         <h2>Chef:
             {{chef.name}}</h2>
 
-        <a href="/admin/chefs/{{chef.id}}/edit" type="submit">Editar chef</a>
+        {% if sessionIsAdmin.is_admin == true %}
+            <a href="/admin/chefs/{{chef.id}}/edit" type="submit">Editar chef</a>
+        {% endif %}
     </div>
 
     <div class="image">

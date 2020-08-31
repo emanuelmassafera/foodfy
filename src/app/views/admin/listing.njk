@@ -9,8 +9,11 @@
     <section class="content">
         <div class="title">
             <h2>Gerenciar receitas</h2>
+
+            <a href="/admin/recipes/create">Nova</a>
+
         </div>
- 
+
         <section class="cards">
             {% for recipe in recipes %}
                 <div class="card" id="{{recipes.indexOf(recipe)}}">
@@ -19,7 +22,7 @@
                     </div>
                     <div>
                         <div class="card-title">
-                            <p class="card-title-id">{{recipe[recipe].title}}</p>
+                            <p class="card-title-id">{{recipe.title}}</p>
                         </div>
 
                         <div class="card-info">

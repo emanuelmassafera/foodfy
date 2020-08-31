@@ -10,7 +10,10 @@
     <div class="top">
         <h2>Receita: {{recipe.title}}</h2>
 
-        <a href="/admin/recipes/{{recipe.id}}/edit" type="submit">Editar receita</a>
+        {% if sessionIsAdmin.is_admin == true or recipe.user_id == session.userId %}
+            <a href="/admin/recipes/{{recipe.id}}/edit" type="submit">Editar receita</a>
+        {% endif %}
+
     </div>
 
     <div class="image">

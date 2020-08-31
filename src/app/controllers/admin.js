@@ -1,6 +1,7 @@
 const Recipe = require("../models/Recipe");
 const Chef = require("../models/Chef");
 const File = require("../models/File");
+const User = require("../models/User");
 
 
 module.exports = {
@@ -24,7 +25,10 @@ module.exports = {
             }
         }
 
-        return res.render("admin/listing", { recipes, session: req.session});
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("admin/listing", { recipes, session: req.session, sessionIsAdmin });
     },
 
     async create(req, res) {
@@ -48,7 +52,7 @@ module.exports = {
             return res.send("Select at least one image!");
         }
 
-        let results = await Recipe.create(req.body);
+        let results = await Recipe.create(req.body, req.session.userId);
         const recipeId = results.rows[0].id;
 
         const filesPromises = req.files.map(file => File.create({ ...file, recipe_id: recipeId, session: req.session }));
@@ -70,7 +74,10 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/show", { recipe, files, session: req.session });
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("admin/show", { recipe, files, session: req.session, sessionIsAdmin });
     },
 
     async edit(req, res) {
@@ -151,7 +158,10 @@ module.exports = {
             }
         }
 
-        return res.render("admin/listing-chef", { chefs, session: req.session });
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("admin/listing-chef", { chefs, session: req.session, sessionIsAdmin });
     },
 
     createChef(req, res) {
@@ -211,7 +221,10 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/show-chef", { chef, recipes, files, session: req.session });
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("admin/show-chef", { chef, recipes, files, session: req.session, sessionIsAdmin });
     },
 
     async editChef(req, res) {

@@ -20,8 +20,6 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        console.log(sessionIsAdmin)
-
         return res.render("user/list", { users, session: req.session, sessionIsAdmin });
     },
 }
