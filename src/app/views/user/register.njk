@@ -1,0 +1,43 @@
+{% extends "user/layout.njk" %}
+
+{% block head %}
+    <title>Register user</title>
+    <link rel="stylesheet" href="/user/register.css">
+{% endblock head %}
+
+{% block content %}
+
+    <form method="POST" action="/admin/users/register">
+        <section class="title">
+            <h2>Criar Usuário</h2>
+
+            <div class="buttons">
+                <button type="submit">Salvar</button>
+                <a href="#">Cancelar</a>
+            </div>
+
+        </section>
+
+        <div class="inputs">
+
+            <div class="item">
+                <p>Nome</p>
+
+                <input type="text" name="name" placeholder="Digite o nome completo" required="required">
+            </div>
+
+            <div class="item">
+                <p>Email</p>
+                <div class="input">
+                    <input type="email" name="email" placeholder="Digite o email">
+                </div>
+            </div>
+
+        </div>
+
+        <input type="checkbox" id="isAdm" name="isAdm" value="true">
+        <label for="isAdm">Administrador</label><br>
+
+    </form>
+
+{% endblock content %}

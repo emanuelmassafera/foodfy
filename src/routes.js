@@ -3,6 +3,9 @@ const routes = express.Router();
 const multer = require("./app/middlewares/multer");
 const website = require("./app/controllers/website");
 const admin = require("./app/controllers/admin");
+const SessionController = require("./app/controllers/SessionController");
+const UserController = require("./app/controllers/UserController");
+
 
 routes.get("/", website.home);
 routes.get("/about", website.about);
@@ -25,5 +28,10 @@ routes.get("/admin/chefs/:id/edit", admin.editChef);
 routes.post("/admin/chefs", multer.array("photos", 1), admin.postChef);
 routes.put("/admin/chefs", multer.array("photos", 1), admin.putChef);
 routes.delete("/admin/chefs", admin.deleteChef);
+
+routes.get("/admin/users/login", SessionController.loginForm);
+
+routes.get("/admin/users/register", UserController.registerForm);
+routes.post("/users/register", UserValidator.post, UserController.post);
 
 module.exports = routes;

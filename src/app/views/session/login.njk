@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/session/login.css">
+        <title>Login</title>
+
+    </head>
+    <body>
+
+        <div class="container">
+
+            <img src="/assets/logo.png" alt="Logo">
+
+            <section class="form">
+                <h3>Iniciar Sessão</h3>
+
+                <form method="POST" action="/users/login">
+                    <div class="item">
+                        <p>Email</p>
+                        <div class="input">
+                            <input type="email" name="email" placeholder="Digite seu email">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <p>Senha</p>
+                        <div class="input">
+                            <input type="password" name="password" placeholder="Digite sua senha">
+                        </div>
+                    </div>
+
+                    <div class="footer">
+                        <a href="/users/forgot-password">Perdeu a senha?</a>
+
+                        <button class="button" type="submit">Acessar</button>
+
+                    </div>
+
+                </form>
+            </section>
+        </div>
+
+        <script src="/script.js"></script>
+    </body>
+</html>
