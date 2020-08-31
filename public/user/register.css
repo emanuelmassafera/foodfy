@@ -120,25 +120,25 @@ header .login-logout {
     transition: font-weight 300ms;
 }
 
-form {
+.register {
     width: 940px;
     margin: 15px auto 50px auto;
 }
 
-form .title {
+.register .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 65px;
 }
 
-form .title h2 {
+.register .title h2 {
     font-size: 24px;
     line-height: 29px;
     color: #111111;
 }
 
-form .title .buttons button {
+.register .title .buttons button {
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;
@@ -152,7 +152,7 @@ form .title .buttons button {
     margin-right: 16px;
 }
 
-form .title .buttons a {
+.register .title .buttons a {
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;
@@ -166,18 +166,18 @@ form .title .buttons a {
     transition: 300ms;
 }
 
-form .title .buttons a:hover {
+.register .title .buttons a:hover {
     background-color: #DC4747;
 }
 
-form .inputs {
+.register .inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     margin-bottom: 33px;
 }
 
-form .inputs p {
+.register .inputs p {
     color: #111111;
     font-size: 16px;
     font-weight: bold;
@@ -185,7 +185,7 @@ form .inputs p {
     margin-bottom: 10px;
 }
 
-form .inputs input {
+.register .inputs input {
     padding-left: 20px;
     margin-top: 10px;
     width: 100%;
@@ -199,7 +199,7 @@ form .inputs input {
     box-sizing: border-box;
 }
 
-form .inputs input::placeholder {
+.register .inputs input::placeholder {
     color: #999999;
     font-size: 16px;
     line-height: 19px;

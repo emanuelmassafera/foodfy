@@ -24,14 +24,14 @@ module.exports = {
             }
         }
 
-        return res.render("admin/listing", { recipes });
+        return res.render("admin/listing", { recipes, session: req.session});
     },
 
     async create(req, res) {
         results = await Recipe.chefSelectOptions();
         const options = results.rows;
 
-        return res.render("admin/create", { chefOptions: options });
+        return res.render("admin/create", { chefOptions: options, session: req.session });
 
     },
 
@@ -51,7 +51,7 @@ module.exports = {
         let results = await Recipe.create(req.body);
         const recipeId = results.rows[0].id;
 
-        const filesPromises = req.files.map(file => File.create({ ...file, recipe_id: recipeId }));
+        const filesPromises = req.files.map(file => File.create({ ...file, recipe_id: recipeId, session: req.session }));
         await Promise.all(filesPromises);
 
         return res.redirect(`/admin/recipes/${recipeId}`);
@@ -70,7 +70,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/show", { recipe, files });
+        return res.render("admin/show", { recipe, files, session: req.session });
     },
 
     async edit(req, res) {
@@ -90,7 +90,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/edit", { recipe, chefOptions: options, files });
+        return res.render("admin/edit", { recipe, chefOptions: options, files, session: req.session });
     },
 
     async put(req, res) {
@@ -151,15 +151,11 @@ module.exports = {
             }
         }
 
-        return res.render("admin/listing-chef", { chefs });
-
-        Chef.all(function (chefs) {
-            return res.render("admin/listing-chef", { chefs });
-        });
+        return res.render("admin/listing-chef", { chefs, session: req.session });
     },
 
     createChef(req, res) {
-        return res.render("admin/create-chef");
+        return res.render("admin/create-chef", { session: req.session });
     },
 
     async postChef(req, res) {
@@ -215,7 +211,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/show-chef", { chef, recipes, files });
+        return res.render("admin/show-chef", { chef, recipes, files, session: req.session });
     },
 
     async editChef(req, res) {
@@ -231,7 +227,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/edit-chef", { chef, files });
+        return res.render("admin/edit-chef", { chef, files, session: req.session });
     },
 
     async putChef(req, res) {

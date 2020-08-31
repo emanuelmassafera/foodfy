@@ -17,18 +17,18 @@
                 <div class="links">
                     <a class="recipes" href="/admin/recipes">Receitas</a>
                     <a class="chefs" href="/admin/chefs">Chefs</a>
-                    <a class="users" href="#">Usuários</a>
+                    <a class="users" href="/admin/users/list">Usuários</a>
                 </div>
 
                 {% if session.userId %}
 
-                    <form action="/users/logout" method="POST">
+                    <form action="/admin/users/logout" method="POST">
                         <button class="login-logout">Sair</button>
                     </form>
 
                 {% else %}
 
-                    <a href="/users/login" class="login-logout">Entrar</a>
+                    <a href="/admin/users/login" class="login-logout">Entrar</a>
 
                 {% endif %}
 

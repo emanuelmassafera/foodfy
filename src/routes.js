@@ -5,6 +5,7 @@ const website = require("./app/controllers/website");
 const admin = require("./app/controllers/admin");
 const SessionController = require("./app/controllers/SessionController");
 const UserController = require("./app/controllers/UserController");
+const SessionValidator = require("./app/validators/session");
 
 
 routes.get("/", website.home);
@@ -30,8 +31,12 @@ routes.put("/admin/chefs", multer.array("photos", 1), admin.putChef);
 routes.delete("/admin/chefs", admin.deleteChef);
 
 routes.get("/admin/users/login", SessionController.loginForm);
+routes.post("/admin/users/login", SessionValidator.login, SessionController.login);
+routes.post("/admin/users/logout", SessionController.logout);
 
 routes.get("/admin/users/register", UserController.registerForm);
 routes.post("/admin/users/register", UserController.post);
+routes.get("/admin/users/list", UserController.list);
+
 
 module.exports = routes;

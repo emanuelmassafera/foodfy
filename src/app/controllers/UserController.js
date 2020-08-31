@@ -8,8 +8,12 @@ module.exports = {
     async post(req, res) {
         const userId = await User.create(req.body);
 
-        //req.session.userId = userId;
+        req.session.userId = userId;
 
-        return res.redirect("/admin/users/login");
+        return res.redirect("/admin/users/list", { session: req.session});
+    },
+
+    list(req, res) {
+        return res.render("user/list", { session: req.session});
     },
 }
