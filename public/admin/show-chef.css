@@ -175,6 +175,7 @@ header {
     width: 172px;
     height: 80px;
     border-radius: 8.57px;
+    object-fit: cover;
 }
 
 .card-title p {

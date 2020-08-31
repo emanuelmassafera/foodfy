@@ -138,6 +138,7 @@ header .filter button {
     width: 100%;
     height: 140px;
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .card-title p {

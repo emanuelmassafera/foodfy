@@ -133,7 +133,25 @@ module.exports = {
 
     /* ------ Chefs ------ */
 
-    indexChef(req, res) {
+    async indexChef(req, res) {
+        let results = await Chef.all();
+        let chefs = results.rows;
+
+        for (let index = 0; index < chefs.length; index++) {
+            results = await Chef.files(chefs[index].id);
+            const files = results.rows.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }));
+
+            if(files[0]) {
+                chefs[index].image = files[0].src;
+            } else {
+                chefs[index].image = "//placehold.it/500x360";
+            }
+        }
+
+        return res.render("admin/listing-chef", { chefs });
 
         Chef.all(function (chefs) {
             return res.render("admin/listing-chef", { chefs });
@@ -175,7 +193,21 @@ module.exports = {
         if (!chef) return res.send("Chef not found!");
 
         results = await Chef.findRecipes(chef.id);
-        const recipes = results.rows;
+        let recipes = results.rows;
+
+        for (let index = 0; index < recipes.length; index++) {
+            results = await Recipe.files(recipes[index].id);
+            const files = results.rows.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }));
+
+            if(files[0]) {
+                recipes[index].image = files[0].src;
+            } else {
+                recipes[index].image = "//placehold.it/500x360";
+            }
+        }
 
         results = await Chef.files(chef.id);
         const files = results.rows.map(file => ({

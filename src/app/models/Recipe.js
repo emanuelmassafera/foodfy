@@ -44,7 +44,7 @@ module.exports = {
         WHERE recipes.id=$1`, [id]);
     },
 
-    findBy(filter, callback) {
+    findBy(filter) {
         let filterQuery = "",
             totalQuery = `SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id) `;
@@ -57,11 +57,7 @@ module.exports = {
             ${filterQuery}`;
         }
 
-        db.query(totalQuery, function (err, results) {
-            if (err) throw `Database Error! ${err}`;
-
-            callback(results.rows);
-        });
+        return db.query(totalQuery);
     },
 
     update(data) {
