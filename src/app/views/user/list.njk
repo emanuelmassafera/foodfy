@@ -24,8 +24,13 @@
                     <p>{{user.email}}</p>
 
                     <div class="buttons">
-                        <a class="edit" href="#">Editar</a>
-                        <a class="delete" href="#">Remover</a>
+                        {% if session.userId == user.id or sessionIsAdmin.is_admin == true %}
+                            <a class="edit" href="#">Editar</a>
+                        {% endif %}
+
+                        {% if sessionIsAdmin.is_admin == true and session.userId != user.id and user.is_admin == false %}
+                            <a class="delete" href="#">Remover</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

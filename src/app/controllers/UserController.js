@@ -14,9 +14,14 @@ module.exports = {
     },
 
     async list(req, res) {
-        const results = await User.all();
+        let results = await User.all();
         const users = results.rows;
 
-        return res.render("user/list", { users, session: req.session});
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        console.log(sessionIsAdmin)
+
+        return res.render("user/list", { users, session: req.session, sessionIsAdmin });
     },
 }

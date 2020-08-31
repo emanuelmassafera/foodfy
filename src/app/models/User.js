@@ -10,6 +10,12 @@ module.exports = {
         return db.query(query);
     },
 
+    isAdmin(id) {
+        const query = `SELECT is_admin FROM users WHERE id = $1`;
+
+        return db.query(query, [id])
+    },
+
     async findOne(filters) {
         let query = "SELECT * FROM users";
 
