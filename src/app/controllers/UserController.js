@@ -13,7 +13,10 @@ module.exports = {
         return res.redirect("/admin/users/list", { session: req.session});
     },
 
-    list(req, res) {
-        return res.render("user/list", { session: req.session});
+    async list(req, res) {
+        const results = await User.all();
+        const users = results.rows;
+
+        return res.render("user/list", { users, session: req.session});
     },
 }

@@ -2,9 +2,35 @@
 
 {% block head %}
     <title>Users</title>
-    <link rel="stylesheet" href="/user/register.css">
+    <link rel="stylesheet" href="/user/list.css">
 {% endblock head %}
 
 {% block content %}
+
+    <div class="container">
+
+        <div class="title">
+            <h2>Usuários</h2>
+
+            <a href="/admin/users/register">Novo</a>
+        </div>
+
+        <div class="cards">
+
+            {% for user in users %}
+
+                <div class="card">
+                    <h3>{{user.name}}</h3>
+                    <p>{{user.email}}</p>
+
+                    <div class="buttons">
+                        <a class="edit" href="#">Editar</a>
+                        <a class="delete" href="#">Remover</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
 
 {% endblock content %}

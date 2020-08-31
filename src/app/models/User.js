@@ -4,6 +4,11 @@ const crypto = require("crypto");
 const mailer = require("../../lib/mailer");
 
 module.exports = {
+    all() {
+        const query = `SELECT * FROM users;`
+
+        return db.query(query);
+    },
 
     async findOne(filters) {
         let query = "SELECT * FROM users";
