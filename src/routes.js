@@ -32,6 +32,6 @@ routes.delete("/admin/chefs", admin.deleteChef);
 routes.get("/admin/users/login", SessionController.loginForm);
 
 routes.get("/admin/users/register", UserController.registerForm);
-routes.post("/users/register", UserValidator.post, UserController.post);
+routes.post("/admin/users/register", UserController.post);
 
 module.exports = routes;
