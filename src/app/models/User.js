@@ -2,9 +2,9 @@ const db = require("../../config/db");
 const { hash } = require("bcryptjs");
 const crypto = require("crypto");
 const mailer = require("../../lib/mailer");
-const  Recipe = require("./Recipe");
+const Recipe = require("./Recipe");
 const fs = require('fs');
-const { find } = require("./Recipe");
+const { find, update } = require("./Recipe");
 
 module.exports = {
     all() {
@@ -93,12 +93,12 @@ module.exports = {
         let results = await await db.query(`SELECT recipes.* FROM recipes WHERE recipes.user_id=$1`, [id]);
         const recipes = results.rows;
 
-        const allFilesPromise = recipes.map(recipe => 
+        const allFilesPromise = recipes.map(recipe =>
             Recipe.files(recipe.id)
         );
 
         let promiseResults = await Promise.all(allFilesPromise);
-        
+
         for (let index = 0; index < recipes.length; index++) {
             await db.query(`DELETE FROM recipes_files WHERE recipes_files.recipe_id = $1`, [recipes[index].id]);
         }
@@ -116,5 +116,40 @@ module.exports = {
         });
 
     },
+
+    async update(data) {
+        let query = `
+            UPDATE users SET 
+                name=($1),
+                email=($2),
+                password=($3),
+                is_admin=($4)
+            WHERE id=($5)
+        `;
+
+        let isAdmin;
+        if(data.isAdmin) {
+            isAdmin = data.isAdmin;
+        } else {
+            isAdmin = data.is_adminHidden;
+        }
+
+        let passwordHash;
+        if(data.password) {
+            passwordHash = await hash(data.password, 8);;
+        } else {
+            passwordHash = data.passwordHidden;
+        }
+
+        let values = [
+            data.name,
+            data.email,
+            passwordHash,
+            isAdmin,
+            data.id
+        ];
+        
+        return db.query(query, values);
+    }
 
 }

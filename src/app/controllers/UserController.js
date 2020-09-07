@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const { put } = require("./admin");
 
 module.exports = {
     registerForm(req, res) {
@@ -36,5 +37,19 @@ module.exports = {
         const sessionIsAdmin = results.rows[0];
 
         return res.render("user/edit", { user, session: req.session, sessionIsAdmin })
+    },
+
+    async put(req, res) {
+        const keys = Object.keys(req.body);
+
+        for (key of keys) {
+            if (req.body[key] == "" && key != "isAdmin") {
+                return res.send("Please, fill all fields!");
+            }
+        }
+
+        await User.update(req.body);
+
+        return res.redirect(`/admin/users/list`);
     }
 }

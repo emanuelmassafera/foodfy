@@ -52,12 +52,16 @@
             <label for="isAdm">Administrador</label><br>
         {% endif %}
 
+        <input type="hidden" name="passwordHidden" value="{{user.password}}">
+        <input type="hidden" name="is_adminHidden" value="{{user.is_admin}}">
+        <input type="hidden" name="id" value="{{user.id}}">
+
     </form>
 
     <form id="form-delete" action="/admin/users?_method=DELETE" method="POST">
         <input type="hidden" name="id" value="{{user.id}}">
     </form>
-    
+
     <script src="/user/delete.js"></script>
 
 {% endblock content %}
