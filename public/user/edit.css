@@ -120,26 +120,25 @@ header .login-logout {
     transition: font-weight 300ms;
 }
 
-.container {
+.register {
     width: 940px;
     margin: 15px auto 50px auto;
 }
 
-.container .title {
+.register .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 64px;
+    margin-bottom: 65px;
 }
 
-.container .title h2 {
-    font-weight: bold;
+.register .title h2 {
     font-size: 24px;
     line-height: 29px;
     color: #111111;
 }
 
-.container .title a {
+.register .title .buttons button {
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;
@@ -153,41 +152,56 @@ header .login-logout {
     margin-right: 16px;
 }
 
-.container .cards {
+.register .title .buttons .delete {
+    background-color: #DC4747;
+}
+
+.register .inputs {
     display: grid;
-    grid-template-columns: 250px 250px 250px;
-    gap: 95px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 33px;
 }
 
-.container .cards .card h3 {
-    font-weight: 600;
+.register .inputs p {
     color: #111111;
-    font-size: 18px;
-    line-height: 22px;
-    margin-bottom: 4px;
-}
-
-.container .cards .card p {
-    color: #777777;
-    font-size: 14px;
-    line-height: 17px;
-    margin-bottom: 16px;
-}
-
-.container .cards .card .buttons .edit {
-    color: #6558C3;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
-    margin-right: 16px;
+    line-height: 19px;
+    margin-bottom: 10px;
 }
 
-.container .cards .card .buttons .delete {
-    color: #F55A5A;
-    font-size: 14px;
-    line-height: 17px;
+.register .inputs input {
+    padding-left: 20px;
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    height: 49px;
+    font-size: 16px;
+    line-height: 19px;
     font-weight: bold;
-    cursor: pointer;
-    background: none;
+    color: #555555;
+    box-sizing: border-box;
+}
+
+.register .inputs input::placeholder {
+    color: #999999;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 300;
+}
+
+form #isAdm {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 15px;
+    height: 15px;
+}
+
+form label {
+    color: #111111;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
 }

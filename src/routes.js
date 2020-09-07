@@ -38,6 +38,9 @@ routes.post("/admin/users/logout", SessionController.logout);
 routes.get("/admin/users/register", onlyUsers, UserController.registerForm);
 routes.post("/admin/users/register", onlyUsers, UserController.post);
 routes.get("/admin/users/list", onlyUsers, UserController.list);
+routes.delete("/admin/users", onlyUsers, UserController.delete);
+routes.get("/admin/users/:id/edit", onlyUsers, UserController.edit);
+
 
 
 module.exports = routes;

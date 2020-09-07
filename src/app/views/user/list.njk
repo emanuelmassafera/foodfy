@@ -27,11 +27,7 @@
 
                     <div class="buttons">
                         {% if session.userId == user.id or sessionIsAdmin.is_admin == true %}
-                            <a class="edit" href="#">Editar</a>
-                        {% endif %}
-
-                        {% if sessionIsAdmin.is_admin == true and session.userId != user.id and user.is_admin == false %}
-                            <a class="delete" href="#">Remover</a>
+                            <a class="edit" href="/admin/users/{{user.id}}/edit">Editar</a>
                         {% endif %}
                     </div>
                 </div>
