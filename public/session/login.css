@@ -80,6 +80,10 @@ body{
     align-items: flex-end;
 }
 
+.container .form .footer.forgot-password {
+    justify-content: flex-end;
+}
+
 .container .form .footer a {
     color: #969696;
     font-weight: bold;

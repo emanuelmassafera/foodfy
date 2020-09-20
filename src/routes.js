@@ -42,6 +42,10 @@ routes.delete("/admin/users", onlyUsers, UserController.delete);
 routes.get("/admin/users/:id/edit", onlyUsers, UserController.edit);
 routes.put("/admin/users", onlyUsers, UserController.put);
 
+routes.get("/admin/users/forgot-password", SessionController.forgotPasswordForm);
+routes.post("/admin/users/forgot-password", SessionValidator.forgot, SessionController.forgotPassword);
+routes.get("/admin/users/change-password", SessionController.changePasswordForm);
+routes.post("/admin/users/change-password", SessionValidator.change, SessionController.changePassword);
 
 
 module.exports = routes;
