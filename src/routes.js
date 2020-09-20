@@ -47,5 +47,9 @@ routes.post("/admin/users/forgot-password", SessionValidator.forgot, SessionCont
 routes.get("/admin/users/change-password", SessionController.changePasswordForm);
 routes.post("/admin/users/change-password", SessionValidator.change, SessionController.changePassword);
 
+// ALIAS/ATALHOS
+routes.get("/admin", function(req, res) {
+    return res.redirect("/admin/users/login");
+});
 
 module.exports = routes;
