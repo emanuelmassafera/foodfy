@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const { put } = require("./admin");
 
 module.exports = {
     registerForm(req, res) {
@@ -9,7 +8,7 @@ module.exports = {
     async post(req, res) {
         const userId = await User.create(req.body);
 
-        return res.redirect("/admin/users/list");
+        return res.redirect("/admin/users");
     },
 
     async list(req, res) {
@@ -26,7 +25,7 @@ module.exports = {
 
         await User.delete(req.body.id);
         
-        return res.redirect("/admin/users/list");
+        return res.redirect("/admin/users");
     },
 
     async edit(req, res) {
@@ -50,6 +49,6 @@ module.exports = {
 
         await User.update(req.body);
 
-        return res.redirect(`/admin/users/list`);
+        return res.redirect(`/admin/users`);
     }
 }

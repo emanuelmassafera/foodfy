@@ -8,6 +8,8 @@
         {% block head %}{% endblock head %}
     </head>
     <body>
+        {% include "parts/messages.njk" %}
+        
         <header>
             <section class="header">
                 <a class="logo" href="/admin/recipes">
@@ -17,7 +19,7 @@
                 <div class="links">
                     <a class="recipes" href="/admin/recipes">Receitas</a>
                     <a class="chefs" href="/admin/chefs">Chefs</a>
-                    <a class="users" href="/admin/users/list">Usuários</a>
+                    <a class="users" href="/admin/users">Usuários</a>
                 </div>
 
                 {% if session.userId %}

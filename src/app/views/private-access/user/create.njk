@@ -7,13 +7,13 @@
 
 {% block content %}
 
-    <form class="register" method="POST" action="/admin/users/register">
+    <form class="register" method="POST" action="/admin/users/create">
         <section class="title">
             <h2>Criar Usuário</h2>
 
             <div class="buttons">
                 <button type="submit">Salvar</button>
-                <a href="/admin/users/list">Cancelar</a>
+                <a href="/admin/users">Cancelar</a>
             </div>
 
         </section>
@@ -29,7 +29,7 @@
             <div class="item">
                 <p>Email</p>
                 <div class="input">
-                    <input type="email" name="email" placeholder="Digite o email">
+                    <input type="email" name="email" placeholder="Digite o email" required="required">
                 </div>
             </div>
 

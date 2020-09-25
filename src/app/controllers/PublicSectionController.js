@@ -76,7 +76,7 @@ module.exports = {
         Recipe.paginate(params);
     },
 
-    async recipesIndex(req, res) {
+    async specificRecipe(req, res) {
         let results = await Recipe.find(req.params.id);
         let recipe = results.rows[0];
 
