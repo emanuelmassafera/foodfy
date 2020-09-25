@@ -1,0 +1,74 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>{{chef.name}}</title>
+    <link rel="stylesheet" href="/styles/private-access/chef/show.css">
+{% endblock head %}
+
+{% block content %}
+
+    <div class="top">
+        <h2>Chef:
+            {{chef.name}}</h2>
+
+        {% if sessionIsAdmin.is_admin == true %}
+            <a href="/admin/chefs/{{chef.id}}/edit" type="submit">Editar chef</a>
+        {% endif %}
+    </div>
+
+    <div class="image">
+        <img src="{{files[0].src}}" alt="">
+    </div>
+
+    <div class="info">
+        <p class="name">{{chef.name}}</p>
+        <p class="recipes">
+            {% if chef.total_recipes == 0%}
+                Nenhuma receita cadastrada
+            {% endif %}
+            {% if chef.total_recipes == 1%}
+                {{chef.total_recipes}}
+                receita
+            {% endif %}
+            {% if chef.total_recipes > 1%}
+                {{chef.total_recipes}}
+                receitas
+            {% endif %}
+        </p>
+    </p>
+</div>
+
+{% if chef.total_recipes != 0 %}
+    <div class="title">
+        <h2>Receitas</h2>
+    </div>
+
+    <section class="cards">
+        {% for recipe in recipes %}
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-image-id" src="{{recipe.image}}" alt="">
+                </div>
+                <div>
+                    <div class="card-title">
+                        <p class="card-title-id">{{recipe.title}}</p>
+                    </div>
+
+                    <div class="card-info">
+                        <p class="card-info-id">por
+                            {{chef.name}}</p>
+                    </div>
+
+                    <div class="card-button-view">
+                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </section>
+{% endif %}
+
+</section>
+
+{% endblock content %}

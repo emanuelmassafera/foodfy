@@ -1,0 +1,41 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>Create</title>
+    <link rel="stylesheet" href="/styles/private-access/chef/create.css">
+{% endblock head %}
+
+{% block content %}
+    <form class="recipe" method="POST" action="/admin/chefs" enctype="multipart/form-data">
+        <section class="title">
+            <h2>Criando chef</h2>
+
+            <button type="submit">Salvar chef</button>
+        </section>
+
+        <div class="name">
+            <h3>Nome</h3>
+
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="image-chef">
+            <h3>Avatar</h3>
+
+            <div id="photos-upload">
+                <p>Enviar avatar</p>
+                <input 
+                    type="file" 
+                    name="photos" 
+                    id="photos-input" 
+                    multiple="multiple" 
+                    accept="image/*" 
+                    onchange="PhotosUpload.handleFileInput(event)"
+                >
+            </div>
+
+        </div>
+
+    </form>
+
+{% endblock content %}

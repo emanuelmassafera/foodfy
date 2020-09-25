@@ -5,7 +5,7 @@ const { hash } = require("bcryptjs");
 
 module.exports = {
   loginForm(req, res) {
-    return res.render("session/login");
+    return res.render("private-access/session/login");
   },
 
   login(req, res) {
@@ -21,7 +21,7 @@ module.exports = {
   },
 
   forgotPasswordForm(req, res) {
-    return res.render("session/forgot-password");
+    return res.render("private-access/session/forgot-password");
   },
 
   async forgotPassword(req, res) {
@@ -52,19 +52,19 @@ module.exports = {
             `,
       });
 
-      return res.render("session/forgot-password", {
+      return res.render("private-access/session/forgot-password", {
         success: "Verifique seu email para resetar sua senha!",
       });
     } catch (error) {
       console.error(error);
-      return res.render("session/forgot-password", {
+      return res.render("private-access/session/forgot-password", {
         error: "Erro inesperado, tente novamente!",
       });
     }
   },
 
   changePasswordForm(req, res) {
-    return res.render("session/change-password", { token: req.query.token });
+    return res.render("private-access/session/change-password", { token: req.query.token });
   },
 
   async changePassword(req, res) {
@@ -80,7 +80,7 @@ module.exports = {
           reset_token_expires: "",
       });
 
-      return res.render("session/login", {
+      return res.render("private-access/session/login", {
           user: req.body,
           success: "Senha alterada com sucesso! Faça o seu login."
       });
@@ -89,7 +89,7 @@ module.exports = {
 
       console.error(error);
 
-      return res.render("session/change-password", {
+      return res.render("private-access/session/change-password", {
         user: req.body,
         token,
         error: "Erro inesperado, tente novamente!",

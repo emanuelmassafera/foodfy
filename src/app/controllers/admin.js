@@ -28,14 +28,14 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("admin/listing", { recipes, session: req.session, sessionIsAdmin });
+        return res.render("private-access/recipe/list", { recipes, session: req.session, sessionIsAdmin });
     },
 
     async create(req, res) {
         results = await Recipe.chefSelectOptions();
         const options = results.rows;
 
-        return res.render("admin/create", { chefOptions: options, session: req.session });
+        return res.render("private-access/recipe/create", { chefOptions: options, session: req.session });
 
     },
 
@@ -77,7 +77,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("admin/show", { recipe, files, session: req.session, sessionIsAdmin });
+        return res.render("private-access/recipe/show", { recipe, files, session: req.session, sessionIsAdmin });
     },
 
     async edit(req, res) {
@@ -97,7 +97,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/edit", { recipe, chefOptions: options, files, session: req.session });
+        return res.render("private-access/recipe/edit", { recipe, chefOptions: options, files, session: req.session });
     },
 
     async put(req, res) {
@@ -161,11 +161,11 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("admin/listing-chef", { chefs, session: req.session, sessionIsAdmin });
+        return res.render("private-access/chef/list", { chefs, session: req.session, sessionIsAdmin });
     },
 
     createChef(req, res) {
-        return res.render("admin/create-chef", { session: req.session });
+        return res.render("private-access/chef/create", { session: req.session });
     },
 
     async postChef(req, res) {
@@ -224,7 +224,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("admin/show-chef", { chef, recipes, files, session: req.session, sessionIsAdmin });
+        return res.render("private-access/chef/show", { chef, recipes, files, session: req.session, sessionIsAdmin });
     },
 
     async editChef(req, res) {
@@ -240,7 +240,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/edit-chef", { chef, files, session: req.session });
+        return res.render("private-access/chef/edit", { chef, files, session: req.session });
     },
 
     async putChef(req, res) {

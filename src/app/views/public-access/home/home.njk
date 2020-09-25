@@ -1,0 +1,39 @@
+{% extends "public-access/layout.njk" %}
+
+{% block head %}
+    <title>Foodfy</title>
+    <link rel="stylesheet" href="/styles/public-access/home/home.css">
+{% endblock head %}
+
+{% block content %}
+    <div class="info">
+        <h1>As melhores receitas</h1>
+        <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+        <img src="../assets/chef.png" alt="">
+    </div>
+
+    <div class="accessed">
+        <h2>Mais acessadas</h2>
+    </div>
+
+    <section class="cards">
+
+        {% for i in range(0, 6) %}
+            {% if recipes[i] %}
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{recipes[i].image}}" alt="">
+                    </div>
+                    <div class="card-title">
+                        <p>{{recipes[i].title}}</p>
+                    </div>
+                    <div class="card-info">
+                        <p>por
+                            {{recipes[i].chef_name}}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+    </section>
+{% endblock content %}

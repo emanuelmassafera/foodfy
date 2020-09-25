@@ -1,0 +1,90 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>Create</title>
+    <link rel="stylesheet" href="/styles/private-access/recipe/create.css">
+{% endblock head %}
+
+{% block content %}
+    <form class="recipe" method="POST" action="/admin/recipes" enctype="multipart/form-data">
+        <section class="title">
+            <h2>Criando receita</h2>
+
+            <button type="submit">Salvar receita</button>
+        </section>
+
+        <div class="image">
+            <h3>Imagem da receita</h3>
+
+            <div class="manager">
+                <div id="photos-upload">
+                    <i class="material-icons">add</i>
+                    <input type="file" name="photos" id="photos-input" multiple="multiple" accept="image/*" onchange="PhotosUpload.handleFileInput(event)">
+                </div>
+
+                <div id="photos-preview">
+                    {% if files %}
+
+                        {% for image in files %}
+                            <div class="photo" id="{{image.id}}">
+                                <img src="{{image.src}}" alt="{{image.name}}">
+                                <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                            </div>
+                        {% endfor %}
+
+                        <input type="hidden" name="removed_files">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="name">
+            <h3>Nome da receita</h3>
+
+            <input type="text" name="title" required="required">
+        </div>
+
+        <div class="chef">
+            <h3>Chef</h3>
+            <select name="chef" required="required">
+                <option value="" disabled="disabled" selected="selected" hidden="hidden">Selecione um chef</option>
+                {% for chef in chefOptions %}
+                    <option value="{{chef.id}}" {% if recipe.chef_id == chef.id %} selected="selected" {% endif %}>{{chef.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="_ingredients">
+            <h3>Ingredientes</h3>
+
+            <section class="ingredients">
+                <section class="ingredient">
+                    <input type="text" name="ingredients[]" required="required"/>
+                </section>
+            </section>
+
+            <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+        </div>
+
+        <div class="_steps">
+            <h3>Modo de preparo</h3>
+
+            <section class="steps">
+                <section class="step">
+                    <input type="text" name="preparation[]" required="required"/>
+                </section>
+            </section>
+
+            <button type="button" class="add-step">Adicionar novo passo</button>
+        </div>
+
+        <div class="information">
+            <h3>Informações adicionais</h3>
+
+            <textarea name="information"></textarea>
+        </div>
+    </form>
+
+    <script src="/scripts/private-access/recipe/create.js"></script>
+
+{% endblock content %}

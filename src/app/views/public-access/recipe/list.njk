@@ -1,0 +1,66 @@
+{% extends "public-access/layout.njk" %}
+
+{% block head %}
+    <title>Recipes</title>
+    <link rel="stylesheet" href="/styles/public-access/recipe/list.css">
+{% endblock head %}
+
+{% block content %}
+
+    {% if filter %}
+        <div class="search">
+            <p>Buscando por "{{filter}}"</p>
+        </div>
+    {% endif %}
+
+    {% if recipes.length == 0 %}
+        <div class="notfound">
+            <p>Nenhuma receita encontrada!</p>
+        </div>
+    {% endif %}
+
+    <section class="cards">
+        {% for recipe in recipes %}
+            <div class="card" id="{{recipe.id}}">
+                <div class="card-image">
+                    <img class="card-image-id" src="{{recipe.image}}" alt="">
+                </div>
+                <div class="card-title">
+                    <p class="card-title-id">{{recipe.title}}</p>
+                </div>
+                <div class="card-info">
+                    <p class="card-info-id">por {{recipe.chef_name}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="card-image">
+                    <img class="image-modal" src="" alt="">
+                </div>
+                <div class="modal-card-title">
+                    <p class="title-modal"></p>
+                </div>
+                <div class="modal-card-info">
+                    <p class="info-modal"></p>
+                </div>
+
+                <div class="close-modal">
+                    <a>Fechar modal</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pagination" 
+            data-page={{pagination.page}}
+            data-total={{pagination.total}} 
+            data-filter={{filter}}
+    ></div>
+
+    <script src="/scripts/public-access/recipe/list.js"></script>
+{% endblock content %}

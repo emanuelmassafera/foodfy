@@ -1,0 +1,43 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>Recipes</title>
+    <link rel="stylesheet" href="/styles/private-access/recipe/list.css">
+{% endblock head %}
+
+{% block content %}
+    <section class="content">
+        <div class="title">
+            <h2>Gerenciar receitas</h2>
+
+            <a href="/admin/recipes/create">Nova</a>
+
+        </div>
+
+        <section class="cards">
+            {% for recipe in recipes %}
+                <div class="card" id="{{recipes.indexOf(recipe)}}">
+                    <div class="card-image">
+                        <img class="card-image-id" src="{{recipe.image}}" alt="">
+                    </div>
+                    <div>
+                        <div class="card-title">
+                            <p class="card-title-id">{{recipe.title}}</p>
+                        </div>
+
+                        <div class="card-info">
+                            <p class="card-info-id">por
+                                {{recipe.chef_name}}</p>
+                        </div>
+
+                        <div class="card-button-view">
+                            <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </section>
+    </section>
+
+{% endblock content %}

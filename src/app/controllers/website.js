@@ -23,12 +23,12 @@ module.exports = {
         }
 
 
-        return res.render("website/home", { recipes, filter });
+        return res.render("public-access/home/home", { recipes, filter });
 
     },
 
     about(req, res) {
-        return res.render("website/about");
+        return res.render("public-access/about/about");
     },
 
     async recipes(req, res) {
@@ -65,9 +65,9 @@ module.exports = {
                         page
                     };
 
-                    return res.render("website/recipes", { recipes, pagination, filter });
+                    return res.render("public-access/recipe/list", { recipes, pagination, filter });
                 } else {
-                    return res.render("website/recipes", { recipes, filter });
+                    return res.render("public-access/recipe/list", { recipes, filter });
                 }
 
             }
@@ -96,7 +96,7 @@ module.exports = {
         }
 
 
-        return res.render("website/specification", { recipe });
+        return res.render("public-access/recipe/specific", { recipe });
     },
 
     async chefs(req, res) {
@@ -117,6 +117,6 @@ module.exports = {
             }
         }
 
-        return res.render("website/chefs", { chefs });
+        return res.render("public-access/chef/chef", { chefs });
     }
 }

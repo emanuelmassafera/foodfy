@@ -1,0 +1,81 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>{{recipe.title}}</title>
+    <link rel="stylesheet" href="/styles/private-access/recipe/show.css">
+{% endblock head %}
+
+{% block content %}
+
+    <div class="top">
+        <h2>Receita: {{recipe.title}}</h2>
+
+        {% if sessionIsAdmin.is_admin == true or recipe.user_id == session.userId %}
+            <a href="/admin/recipes/{{recipe.id}}/edit" type="submit">Editar receita</a>
+        {% endif %}
+
+    </div>
+
+    <div class="image">
+        <img src="{{files[0].src}}" alt="">
+    </div>
+
+    <div class="container-preview">
+        <div class="gallery-preview">
+            {% for image in files %}
+                <img 
+                    src="{{image.src}}" 
+                    alt="{{image.name}}" 
+                    {% if loop.index0 == 0 %}
+                    class="active"
+                    {% endif %} 
+                    onclick="ImageGallery.setImage(event)"
+                >
+            {% endfor %}
+        </div>
+    </div>
+    
+
+    <div class="info">
+        <p class="title">{{recipe.title}}</p>
+        <p class="author">por {{recipe.chef_name}}</p>
+    </div>
+
+    <div class="ingredients">
+        <div class="title">
+            <p class="title">Ingredientes</p>
+        </div>
+
+        <div class="list">
+            <ul>
+                {% for ingredient in recipe.ingredients %}
+                    <li>{{ingredient}};</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="preparation">
+        <div class="title">
+            <p class="title">Modo de preparo</p>
+        </div>
+
+        <div class="list">
+            <ul>
+                {% for step in recipe.preparation %}
+                    <li>{{step}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="additional-information">
+        <div class="title">
+            <p class="title">Informações adicionais</p>
+        </div>
+
+        <div class="information">
+            <p>{{recipe.information}}</p>
+        </div>
+    </div>
+{% endblock content %}

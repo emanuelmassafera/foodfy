@@ -3,7 +3,7 @@ const { put } = require("./admin");
 
 module.exports = {
     registerForm(req, res) {
-        return res.render("user/register", { session: req.session});
+        return res.render("private-access/user/create", { session: req.session});
     },
 
     async post(req, res) {
@@ -19,7 +19,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("user/list", { users, session: req.session, sessionIsAdmin });
+        return res.render("private-access/user/list", { users, session: req.session, sessionIsAdmin });
     },
 
     async delete(req, res) {
@@ -36,7 +36,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("user/edit", { user, session: req.session, sessionIsAdmin })
+        return res.render("private-access/user/edit", { user, session: req.session, sessionIsAdmin })
     },
 
     async put(req, res) {

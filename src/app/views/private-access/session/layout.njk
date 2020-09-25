@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/private-access/session/session.css">
+        
+        {% block head %}{% endblock head %}
+
+    </head>
+    <body>
+        {% include "parts/messages.njk" %}
+
+        <div class="container">
+
+            <a href="/admin/users/login">
+                <img src="/assets/logo.png" alt="Logo">
+            </a>
+
+            <section class="form">
+
+                {% block content %}{% endblock content %}
+                
+            </section>
+        </div>
+
+        <script src="/scripts/utils.js"></script>
+    </body>
+</html>

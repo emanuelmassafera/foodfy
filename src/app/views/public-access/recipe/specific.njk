@@ -1,0 +1,61 @@
+{% extends "public-access/layout.njk" %}
+
+{% block head %}
+    <title>Specification</title>
+    <link rel="stylesheet" href="/styles/public-access/recipe/specific.css">
+{% endblock head %}
+
+{% block content %}
+    <div class="image">
+        <img src="{{recipe.image}}" alt="">
+    </div>
+
+    <div class="info">
+        <p class="title">{{recipe.title}}</p>
+        <p class="author">por
+            {{recipe.chef_name}}</p>
+    </div>
+
+    <div class="ingredients">
+        <div class="title">
+            <p class="title">Ingredientes</p>
+            <a class="button">ESCONDER</a>
+        </div>
+
+        <div class="list">
+            <ul>
+                {% for ingredient in recipe.ingredients %}
+                    <li>{{ingredient}};</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="preparation">
+        <div class="title">
+            <p class="title">Modo de preparo</p>
+            <a class="button">ESCONDER</a>
+        </div>
+
+        <div class="list">
+            <ul>
+                {% for step in recipe.preparation %}
+                    <li>{{step}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="additional-information">
+        <div class="title">
+            <p class="title">Informações adicionais</p>
+            <a class="button">ESCONDER</a>
+        </div>
+
+        <div class="information">
+            <p>{{recipe.information}}</p>
+        </div>
+    </div>
+
+    <script src="/scripts/public-access/recipe/specific.js"></script>
+{% endblock content %}

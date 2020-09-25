@@ -1,0 +1,67 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>Atualizar usuário</title>
+    <link rel="stylesheet" href="/styles/private-access/user/edit.css">
+{% endblock head %}
+
+{% block content %}
+
+    <form class="register" method="POST" action="/admin/users?_method=PUT">
+        <section class="title">
+            <h2>Atualizar Usuário</h2>
+
+            <div class="buttons">
+                {% if sessionIsAdmin.is_admin == true and session.userId != user.id and user.is_admin == false %}
+                    <button id="btn-delete" class="delete" type="submit" form="form-delete">Deletar</button>
+                {% endif %}
+                <button type="submit">Salvar</button>
+            </div>
+
+        </section>
+
+        <div class="inputs">
+
+            <div class="item">
+                <p>Nome</p>
+
+                <input type="text" name="name" value="{{user.name}}" required="required">
+            </div>
+
+            <div class="item">
+                <p>Email</p>
+                <div class="input">
+                    <input type="email" name="email" value="{{user.email}}">
+                </div>
+            </div>
+
+            {% if session.userId == user.id %}
+
+                <div class="item">
+                    <p>Senha</p>
+                    <div class="input">
+                        <input type="password" name="password" value="{{user.password}}">
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+
+        {% if sessionIsAdmin.is_admin == true and session.userId != user.id and user.is_admin == false %}
+            <input type="checkbox" id="isAdmin" name="isAdmin" value="true">
+            <label for="isAdm">Administrador</label><br>
+        {% endif %}
+
+        <input type="hidden" name="passwordHidden" value="{{user.password}}">
+        <input type="hidden" name="is_adminHidden" value="{{user.is_admin}}">
+        <input type="hidden" name="id" value="{{user.id}}">
+
+    </form>
+
+    <form id="form-delete" action="/admin/users?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{user.id}}">
+    </form>
+
+    <script src="/scripts/private-access/user/delete.js"></script>
+
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>Chefs</title>
+    <link rel="stylesheet" href="/styles/private-access/chef/list.css">
+{% endblock head %}
+
+{% block content %}
+    <section class="content">
+        <div class="title">
+            <h2>Gerenciar chefs</h2>
+
+            {% if sessionIsAdmin.is_admin == true %}
+                <a href="/admin/chefs/create">Novo</a>
+            {% endif %}
+        </div>
+
+        <section class="cards">
+            {% for chef in chefs %}
+                <div class="card">
+                    <div class="card-image">
+                        <img class="card-image-id" src="{{chef.image}}" alt="">
+                    </div>
+                    <div>
+                        <div class="card-title">
+                            <p class="card-title-id">{{chef.name}}</p>
+                        </div>
+
+                        <div class="card-button-view">
+                            <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </section>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends "private-access/layout.njk" %}
+
+{% block head %}
+    <title>Edit</title>
+    <link rel="stylesheet" href="/styles/private-access/chef/edit.css">
+{% endblock head %}
+
+{% block content %}
+    <form class="recipe" method="POST" action="/admin/chefs?_method=PUT" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{chef.id}}">
+
+        <section class="title">
+            <h2>Editando chef</h2>
+
+            <div class="buttons">
+                <button id="btn-delete" type="submit" form="form-delete">Deletar</button>
+                <button type="submit">Salvar chef</button>
+            </div>
+        </section>
+
+        <div class="name">
+            <h3>Nome</h3>
+
+            <input type="text" name="name" value="{{chef.name}}" required>
+        </div>
+
+        <div class="image-chef">
+            <h3>Avatar</h3>
+
+            <input type="text" id="chef-edit-placeholder" placeholder="{{files[0].name}}" disabled>
+
+            <div id="photos-upload">
+                <p>Enviar avatar</p>
+                <input 
+                    type="file" 
+                    name="photos" 
+                    id="photos-input" 
+                    multiple="multiple" 
+                    accept="image/*" 
+                    onchange="PhotosUpload.handleFileInput(event)"
+                >
+            </div>
+
+        </div>
+
+    </form>
+
+    <form id="form-delete" action="/admin/chefs?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{chef.id}}">
+    </form>
+
+    <script src="/scripts/private-access/chef/edit.js"></script>
+
+{% endblock content %}

@@ -5,7 +5,7 @@ async function login(req, res, next) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
 
-    if (!user) return res.render("session/login", {
+    if (!user) return res.render("private-access/session/login", {
         user: req.body,
         error: "Usuário não cadastrado!"
     });
@@ -13,7 +13,7 @@ async function login(req, res, next) {
     const passed = await compare(password, user.password);
 
     if (!passed) {
-        return res.render("session/login", {
+        return res.render("private-access/session/login", {
             user: req.body,
             error: "Senha incorreta!"
         })
@@ -30,7 +30,7 @@ async function forgot(req, res, next) {
     try {
         let user = await User.findOne({ where: {email} });
 
-        if (!user) return res.render("session/forgot-password", {
+        if (!user) return res.render("private-access/session/forgot-password", {
             user: req.body,
             error: "Email não cadastrado!"
         });
@@ -47,19 +47,19 @@ async function change(req, res, next) {
     const { email, password, confirmPassword, token } = req.body;
     const user = await User.findOne({ where: { email } });
 
-    if (!user) return res.render("session/change-password", {
+    if (!user) return res.render("private-access/session/change-password", {
         user: req.body,
         token,
         error: "Usuário não cadastrado!"
     });
 
-    if (password != confirmPassword) return res.render("session/change-password", {
+    if (password != confirmPassword) return res.render("private-access/session/change-password", {
         user: req.body,
         token,
         error: 'A senha e a repetição de senha estão incorretas!'
     });
 
-    if (token != user.reset_token) return res.render("session/change-password", {
+    if (token != user.reset_token) return res.render("private-access/session/change-password", {
         user: req.body,
         token,
         error: 'Token inválido! Solicite uma nova recuperação de senha.'
@@ -68,7 +68,7 @@ async function change(req, res, next) {
     let now = new Date();
     now = now.setHours(now.getHours());
 
-    if (now > user.reset_token_expires) return res.render("session/change-password", {
+    if (now > user.reset_token_expires) return res.render("private-access/session/change-password", {
         user: req.body,
         token,
         error: 'Token expirado! Solicite uma nova recuperação de senha.'

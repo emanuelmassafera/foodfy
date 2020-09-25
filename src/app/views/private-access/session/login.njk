@@ -1,0 +1,33 @@
+{% extends "private-access/session/layout.njk" %}
+
+{% block head %}
+    <title>Login</title>
+{% endblock head %}
+
+{% block content %}
+    <h3>Iniciar Sessão</h3>
+
+    <form method="POST" action="/admin/users/login">
+        <div class="item">
+            <p>Email</p>
+            <div class="input">
+                <input type="email" name="email" placeholder="Digite seu email">
+            </div>
+        </div>
+
+        <div class="item">
+            <p>Senha</p>
+            <div class="input">
+                <input type="password" name="password" placeholder="Digite sua senha">
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="/admin/users/forgot-password">Perdeu a senha?</a>
+
+            <button class="button" type="submit">Acessar</button>
+
+        </div>
+
+    </form>
+{% endblock content %}
