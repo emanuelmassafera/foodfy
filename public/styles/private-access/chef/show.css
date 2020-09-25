@@ -123,6 +123,7 @@ header .login-logout {
     margin: 0px auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .top h2 {
@@ -131,6 +132,10 @@ header .login-logout {
     line-height: 28px;
     color: #111111;
     opacity: 100%;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .top a {
@@ -173,6 +178,7 @@ header .login-logout {
     font-size: 36px;
     line-height: 42px;
     font-weight: bold;
+    word-wrap: break-word;
 }
 
 .info .recipes {
@@ -221,6 +227,10 @@ header .login-logout {
     color: #111111;
     font-size: 18px;
     line-height: 21px;
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-info p {
@@ -230,6 +240,10 @@ header .login-logout {
     color: #777777;
     margin-top: 5px;
     margin-bottom: 10px;
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-button-view a {
@@ -239,4 +253,32 @@ header .login-logout {
     line-height: 16px;
     color: #6558C3;
     opacity: 100%;
+}
+
+@keyframes hidemessage {
+    to {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+.messages {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    color: white;
+    top: 0;
+    opacity: 1;
+
+    animation: hidemessage 400ms 5s ease-out forwards;
+}
+
+.messages.error {
+    background-color: #e74c3c;
+}
+
+.messages.success {
+    background-color: rgb(122, 182, 30);
 }

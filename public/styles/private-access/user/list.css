@@ -165,6 +165,10 @@ header .login-logout {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 4px;
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .container .cards .card p {
@@ -172,6 +176,10 @@ header .login-logout {
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 16px;
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .container .cards .card .buttons .edit {
@@ -190,4 +198,32 @@ header .login-logout {
     font-weight: bold;
     cursor: pointer;
     background: none;
+}
+
+@keyframes hidemessage {
+    to {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+.messages {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    color: white;
+    top: 0;
+    opacity: 1;
+
+    animation: hidemessage 400ms 5s ease-out forwards;
+}
+
+.messages.error {
+    background-color: #e74c3c;
+}
+
+.messages.success {
+    background-color: rgb(122, 182, 30);
 }

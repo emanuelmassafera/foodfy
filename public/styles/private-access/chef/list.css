@@ -157,6 +157,7 @@ header .login-logout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
+    max-width: 940px;
 }
 
 .card {
@@ -179,6 +180,10 @@ header .login-logout {
     color: #111111;
     font-size: 18px;
     line-height: 21px;
+    max-width: 135px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-button-view a {
@@ -188,4 +193,32 @@ header .login-logout {
     line-height: 16px;
     color: #6558C3;
     opacity: 100%;
+}
+
+@keyframes hidemessage {
+    to {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+.messages {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    color: white;
+    top: 0;
+    opacity: 1;
+
+    animation: hidemessage 400ms 5s ease-out forwards;
+}
+
+.messages.error {
+    background-color: #e74c3c;
+}
+
+.messages.success {
+    background-color: rgb(122, 182, 30);
 }

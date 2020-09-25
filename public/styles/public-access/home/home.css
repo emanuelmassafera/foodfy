@@ -192,6 +192,10 @@ header .filter button {
     font-size: 18px;
     line-height: 21px;
     margin-top: 15px;
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-info p {
@@ -200,6 +204,10 @@ header .filter button {
     line-height: 16px;
     color: #777777;
     margin-top: 5px;
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .credits {

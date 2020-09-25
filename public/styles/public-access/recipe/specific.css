@@ -2,6 +2,7 @@
     margin: 0;
     border: 0;
     padding: 0;
+    flex-shrink: 0;
 }
 
 body{
@@ -89,6 +90,7 @@ header .filter {
     text-align: center;
     margin: 30px auto;
     position: relative;
+    word-wrap: break-word;
 }
 
 .info .title{
@@ -112,6 +114,7 @@ header .filter {
     text-align: center;
     margin: 30px auto;
     position: relative;
+    word-wrap: break-word;
 }
 
 .ingredients .title {
@@ -163,6 +166,7 @@ header .filter {
     text-align: center;
     margin: 30px auto;
     position: relative;
+    word-wrap: break-word;
 }
 
 .preparation .title {
@@ -213,6 +217,7 @@ header .filter {
     text-align: center;
     margin: 30px auto;
     position: relative;
+    word-wrap: break-word;
 }
 
 .additional-information .title {

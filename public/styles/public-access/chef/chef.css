@@ -101,6 +101,10 @@ header .filter {
     color: #111111;
     font-size: 18px;
     line-height: 21px;
+    max-width: 135px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-info p {
