@@ -4,7 +4,7 @@
 
 <h1 align="center">Foodfy</h1>
 
-<p align="center">🍴 Site de receitas de uma empresa fictícia chamada Foodfy 🍴</p>
+<p align="center">🍴 Site de receitas chamado Foodfy 🍴</p>
 
 <h4 align="center">🚧   Em construção 🚀 🚧</h4>
 
@@ -26,36 +26,57 @@ Tabela de conteúdos
 
 ## Sobre o projeto <a name="-sobre-o-projeto" style="text-decoration:none"></a>
 
-Aplicação React que consome API acerca da série de animação Rick and Morty e mostra em tela os dados dos personagens e dos episódios. 
+Foodfy é um site de receitas completo, que conta com parte de visita ao público e parte administrativa. Nele é possível cadastrar usuários, chefs e, claro, receitas! Foi desenvolvido com JavaScript em toda stack e utiliza o banco de dados relacional PostgreSQL. O escopo e as orientações para realização deste projeto são do Bootcamp LaunchBase, da Rocketseat.
 
 ---
 
 ## Tecnologias <a name="-tecnologias" style="text-decoration:none"></a>
 
-- **[ReactJS](https://reactjs.org/)**
-- **[React Router](https://reactrouter.com/web/guides/quick-start)**
-- **[Styled Components](https://styled-components.com/)**
-- **[TypeScript](https://www.typescriptlang.org/)**
 - **[NodeJS](https://nodejs.org/en/)**
-- **[Rick and Morty API](https://rickandmortyapi.com/)**
+- **[Express](https://expressjs.com/)**
+- **[Express Session](https://github.com/expressjs/session)**
+- **[Method Override](https://github.com/expressjs/method-override)**
+- **[Multer](https://github.com/expressjs/multer)**
+- **[PG](https://github.com/brianc/node-postgres/tree/master/packages/pg)**
+- **[Connect PG Simple](https://www.npmjs.com/package/connect-pg-simple)**
+- **[Bcrypt](https://github.com/dcodeIO/bcrypt.js)**
+- **[Nodemailer](https://nodemailer.com/about/)**
+- **[Nunjucks](https://github.com/mozilla/nunjucks)**
 
 ---
 
 ## Funcionalidades <a name="-funcionalidades" style="text-decoration:none"></a>
 
-- [x] Cadastro de professores
-- [x] Pesquisa de professores por filtros de matéria e horário
+- [x] Controle de sessão (login e logout)
+- [x] Cadastro de usuários
+- [x] Edição de usuários
+- [x] Remoção de usuários
+- [x] Listagem de usuários
+- [x] Recuperação de senha
+- [x] Cadastro de chefs
+- [x] Edição de chefs
+- [x] Remoção de chefs
+- [x] Listagem de chefs
+- [x] Cadastro de receitas
+- [x] Edição de receitas
+- [x] Remoção de receitas
+- [x] Listagem de receitas
+- [x] Pesquisa de receitas
 
 ---
 
 ## Layout <a name="-layout" style="text-decoration:none"></a>
 
-<h1 align="center">
-    <img alt="Gif" src="./public/RickAndMortyTracker.gif" width="800px" />
-</h1>
+### Seção de acesso público
 
 <h1 align="center">
-    <img alt="Gif Responsividade" src="./public/RickAndMortyTrackerResponsive.gif" width="800px" />
+    <img alt="Gif" src="./public/assets/publicSection.gif" width="800px" />
+</h1>
+
+### Seção de acesso privado
+
+<h1 align="center">
+    <img alt="Gif Responsividade" src="./public/assets/privateSection.gif" width="800px" />
 </h1>
 
 ---
