@@ -119,7 +119,7 @@ $ cd "C:\Program Files\PostgreSQL\12\bin\"
 # Inicie o postgres com o comando abaixo
 $ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" start
 
-# Após o uso, o camando para desligá-lo é
+# Após o uso, o comando para desligá-lo é
 $ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" stop
 
 ```
