@@ -107,7 +107,7 @@ $ npm install
 
 #### Configurando o banco de dados
 
-Instale em seu computador o [PostgreSQL](https://www.postgresql.org/download/) e o [Postbird](https://www.electronjs.org/apps/postbird). Finalizando as instalações, ligue o PostgreSQL. 
+Instale em seu computador o [PostgreSQL](https://www.postgresql.org/download/). Finalizando a instalação, ligue-o. 
 
 No Windows, o processo para ligá-lo segue os seguintes passos:
 
@@ -124,9 +124,13 @@ $ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" stop
 
 ```
 
-Depois de ligar o PostgreSQL, acesse o Postbird e crie um Database com o nome de foodfy. Feito isso, acesse o banco de dados criado e execute em uma query o conteúdo do arquivo [database.sql](https://github.com/emanuelmassafera/foodfy/blob/master/src/database.sql) presente neste respositório. Se tudo deu certo até aqui, o seu banco de dados já está criado.
+Depois de ligar o PostgreSQL, acesse o pgAdmin (o programa é instalado junto com o postgres) e crie um banco de dados com o nome de foodfy. Feito isso, clique na opção Restore do banco e carregue o arquivo [foodfy.sql](https://github.com/emanuelmassafera/foodfy/blob/master/src/foodfy.sql) presente neste respositório. Você pode checar se o banco foi restaurado verificando suas tabelas. Se tudo deu certo até aqui, o seu banco de dados já está criado. Caso queira, acesse o arquivo [pgAdmin.md](https://github.com/emanuelmassafera/foodfy/blob/master/pgAdmin.md) para ver as imagens destes passos.
 
-### Por fim, o último passo é a configuração do Mailtrap
+#### Observações
+
+Pode ser que durante este processo de configuração do banco de dados uma senha do postgres seja pedida. Em alguns casos a senha padrão é *admin*.
+
+### Por fim, o último passo é configurar o Mailtrap
 
 O Mailtrap será responsável por simular uma caixa de e-mails para as funcionalidade de criar um usuário e de recuperar a senha. 
 
@@ -168,6 +172,10 @@ $ npm start
 # O servidor inciará na porta:3000 - acesse http://localhost:3000
 
 ```
+
+#### Observações
+
+Ao acessar *localhost:3000* você estará na seção pública do foodfy. Para ter acesso ao setor administrativo entre em *localhost:3000/admin*. O administrador padrão do sitema tem o email *admin@admin.com* e senha *admin*.
 
 ---
 
