@@ -192,6 +192,6 @@ Ao acessar *localhost:3000* você estará na seção pública do foodfy. Para te
 
 ## Licença <a name="-licenca" style="text-decoration:none"></a>
 
-Esse repositório está licenciado pela **MIT LICENSE**. Para informações detalhadas, leia o arquivo [LICENSE](https://github.com/emanuelmassafera/rick-and-morty-tracker/blob/master/LICENSE). 
+Esse repositório está licenciado pela **MIT LICENSE**. Para informações detalhadas, leia o arquivo [LICENSE](https://github.com/emanuelmassafera/foodfy/blob/master/LICENSE). 
 
 Made with ♥ by Emanuel Massafera :wave: [Get in touch!](https://www.linkedin.com/in/emanuelmassafera/)
