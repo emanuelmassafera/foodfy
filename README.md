@@ -4,7 +4,7 @@
 
 <h1 align="center">Foodfy</h1>
 
-<p align="center">🍴 Site de receitas de uma empresa fictícia chamada Foodfy 🍴</p>
+<p align="center">🍴 Site de receitas chamado Foodfy 🍴</p>
 
 <h4 align="center">🚧   Em construção 🚀 🚧</h4>
 
@@ -26,59 +26,141 @@ Tabela de conteúdos
 
 ## Sobre o projeto <a name="-sobre-o-projeto" style="text-decoration:none"></a>
 
-Aplicação React que consome API acerca da série de animação Rick and Morty e mostra em tela os dados dos personagens e dos episódios. 
+Foodfy é um site de receitas completo, que conta com parte de visita ao público e parte administrativa. Nele é possível cadastrar usuários, chefs e, claro, receitas! Foi desenvolvido com JavaScript em toda stack e utiliza o banco de dados relacional PostgreSQL. O escopo e as orientações para realização deste projeto são do Bootcamp LaunchBase, da Rocketseat.
 
 ---
 
 ## Tecnologias <a name="-tecnologias" style="text-decoration:none"></a>
 
-- **[ReactJS](https://reactjs.org/)**
-- **[React Router](https://reactrouter.com/web/guides/quick-start)**
-- **[Styled Components](https://styled-components.com/)**
-- **[TypeScript](https://www.typescriptlang.org/)**
 - **[NodeJS](https://nodejs.org/en/)**
-- **[Rick and Morty API](https://rickandmortyapi.com/)**
+- **[Express](https://expressjs.com/)**
+- **[Express Session](https://github.com/expressjs/session)**
+- **[Method Override](https://github.com/expressjs/method-override)**
+- **[Multer](https://github.com/expressjs/multer)**
+- **[PG](https://github.com/brianc/node-postgres/tree/master/packages/pg)**
+- **[Connect PG Simple](https://www.npmjs.com/package/connect-pg-simple)**
+- **[Bcrypt](https://github.com/dcodeIO/bcrypt.js)**
+- **[Nodemailer](https://nodemailer.com/about/)**
+- **[Nunjucks](https://github.com/mozilla/nunjucks)**
 
 ---
 
 ## Funcionalidades <a name="-funcionalidades" style="text-decoration:none"></a>
 
-- [x] Cadastro de professores
-- [x] Pesquisa de professores por filtros de matéria e horário
+- [x] Controle de sessão (login e logout)
+- [x] Cadastro de usuários
+- [x] Edição de usuários
+- [x] Remoção de usuários
+- [x] Listagem de usuários
+- [x] Recuperação de senha
+- [x] Cadastro de chefs
+- [x] Edição de chefs
+- [x] Remoção de chefs
+- [x] Listagem de chefs
+- [x] Cadastro de receitas
+- [x] Edição de receitas
+- [x] Remoção de receitas
+- [x] Listagem de receitas
+- [x] Pesquisa de receitas
 
 ---
 
 ## Layout <a name="-layout" style="text-decoration:none"></a>
 
-<h1 align="center">
-    <img alt="Gif" src="./public/RickAndMortyTracker.gif" width="800px" />
-</h1>
+### Seção de acesso público
 
 <h1 align="center">
-    <img alt="Gif Responsividade" src="./public/RickAndMortyTrackerResponsive.gif" width="800px" />
+    <img alt="Gif" src="./public/assets/publicSection.gif" width="800px" />
+</h1>
+
+### Seção de acesso privado
+
+<h1 align="center">
+    <img alt="Gif Responsividade" src="./public/assets/privateSection.gif" width="800px" />
 </h1>
 
 ---
 
 ## Como executar o projeto <a name="-como-executar-o-projeto" style="text-decoration:none"></a>
 
-### Pré-requisitos
-
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com) e [Node.js](https://nodejs.org/en/). Para trabalhar com o código, é recomendável o uso de um bom editor, como o [VSCode](https://code.visualstudio.com/).
 
-#### Rodando a aplicação
+### O primeiro passo é clonar este repositório
+
+#### Clonando o repositório
 
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/emanuelmassafera/rick-and-morty-tracker.git
+$ git clone https://github.com/emanuelmassafera/foodfy.git
 
 # Acesse a pasta do projeto pelo terminal/cmd
-$ cd rick-and-morty-tracker
+$ cd foodfy
 
 # Instale as dependências
 $ npm install
+
+```
+
+### O passo seguinte é configurar o banco de dados
+
+#### Configurando o banco de dados
+
+Instale em seu computador o [PostgreSQL](https://www.postgresql.org/download/) e o [Postbird](https://www.electronjs.org/apps/postbird). Finalizando as instalações, ligue o PostgreSQL. 
+
+No Windows, o processo para ligá-lo segue os seguintes passos:
+
+```bash
+
+# Abra o Powershell como administrador, e navegue até a pasta de instalação
+$ cd "C:\Program Files\PostgreSQL\12\bin\"
+
+# Inicie o postgres com o comando abaixo
+$ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" start
+
+# Após o uso, o camando para desligá-lo é
+$ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" stop
+
+```
+
+Depois de ligar o PostgreSQL, acesse o Postbird e crie um Database com o nome de foodfy. Feito isso, acesse o banco de dados criado e execute em uma query o conteúdo do arquivo [database.sql](https://github.com/emanuelmassafera/foodfy/blob/master/src/database.sql) presente neste respositório. Se tudo deu certo até aqui, o seu banco de dados já está criado.
+
+### Por fim, o último passo é a configuração do Mailtrap
+
+O Mailtrap será responsável por simular uma caixa de e-mails para as funcionalidade de criar um usuário e de recuperar a senha. 
+
+#### Configurando o Mailtrap
+
+Entre no site do [Mailtrap](https://mailtrap.io/) e faça seu cadastro. Quando já estiver cadastrado, acesse a aba Inboxes, crie uma nova inbox com o nome de foodfy, entre no seção SMTP Settings e mude Integrations para Nodemailer. Agora copie o código gerado, cole no arquivo [mailer.js](https://github.com/emanuelmassafera/foodfy/blob/master/src/lib/mailer.js) e faça algumas pequenas alterações para que fique semelhante a este:
+
+```javascript
+
+const nodemailer = require("nodemailer");
+
+module.exports = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+        user: "64c928ef98456a",
+        pass: "b296d458814028"
+    }
+});
+
+```
+
+É importante que o código preenchido no aquivo mailer.js seja o gerado em sua conta do Mailtrap, caso contrário você não receberá os e-mails corretamente.
+
+### Executar o projeto.
+
+Finalizando todos os passos descritos acima com sucesso, agora podemos executar o projeto.
+
+#### Executando o projeto
+
+```bash
+
+# Acesse a pasta do projeto pelo terminal/cmd
+$ cd foodfy
 
 # Execute a aplicação
 $ npm start
@@ -86,6 +168,7 @@ $ npm start
 # O servidor inciará na porta:3000 - acesse http://localhost:3000
 
 ```
+
 ---
 
 ## Autor <a name="-autor" style="text-decoration:none"></a>
