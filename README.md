@@ -83,23 +83,84 @@ Foodfy é um site de receitas completo, que conta com parte de visita ao públic
 
 ## Como executar o projeto <a name="-como-executar-o-projeto" style="text-decoration:none"></a>
 
-### Pré-requisitos
-
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com) e [Node.js](https://nodejs.org/en/). Para trabalhar com o código, é recomendável o uso de um bom editor, como o [VSCode](https://code.visualstudio.com/).
 
-#### Rodando a aplicação
+### O primeiro passo é clonar este repositório
+
+#### Clonando o repositório
 
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/emanuelmassafera/rick-and-morty-tracker.git
+$ git clone https://github.com/emanuelmassafera/foodfy.git
 
 # Acesse a pasta do projeto pelo terminal/cmd
-$ cd rick-and-morty-tracker
+$ cd foodfy
 
 # Instale as dependências
 $ npm install
+
+```
+
+### O passo seguinte é configurar o banco de dados
+
+#### Configurando o banco de dados
+
+Instale em seu computador o [PostgreSQL](https://www.postgresql.org/download/) e o [Postbird](https://www.electronjs.org/apps/postbird). Finalizando as instalações, ligue o PostgreSQL. 
+
+No Windows, o processo para ligá-lo segue os seguintes passos:
+
+```bash
+
+# Abra o Powershell como administrador, e navegue até a pasta de instalação
+$ cd "C:\Program Files\PostgreSQL\12\bin\"
+
+# Inicie o postgres com o comando abaixo
+$ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" start
+
+# Após o uso, o camando para desligá-lo é
+$ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" stop
+
+```
+
+Depois de ligar o PostgreSQL, acesse o Postbird e crie um Database com o nome de foodfy. Feito isso, acesse o banco de dados criado e execute em uma query o conteúdo do arquivo [database.sql](https://github.com/emanuelmassafera/foodfy/blob/master/src/database.sql) presente neste respositório. Se tudo deu certo até aqui, o seu banco de dados já está criado.
+
+### Por fim, o último passo é a configuração do Mailtrap
+
+O Mailtrap será responsável por simular uma caixa de e-mails para as funcionalidade de criar um usuário e de recuperar a senha. 
+
+#### Configurando o Mailtrap
+
+Entre no site do [Mailtrap](https://mailtrap.io/) e faça seu cadastro. Quando já estiver cadastrado, acesse a aba Inboxes, crie uma nova inbox com o nome de foodfy, entre no seção SMTP Settings e mude Integrations para Nodemailer. Agora copie o código gerado, cole no arquivo [mailer.js](https://github.com/emanuelmassafera/foodfy/blob/master/src/lib/mailer.js) e faça algumas pequenas alterações para que fique semelhante a este:
+
+```javascript
+
+const nodemailer = require("nodemailer");
+
+module.exports = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+        user: "64c928ef98456a",
+        pass: "b296d458814028"
+    }
+});
+
+```
+
+É importante que o código preenchido no aquivo mailer.js seja o gerado em sua conta do Mailtrap, caso contrário você não receberá os e-mails corretamente.
+
+### Executar o projeto.
+
+Finalizando todos os passos descritos acima com sucesso, agora podemos executar o projeto.
+
+#### Executando o projeto
+
+```bash
+
+# Acesse a pasta do projeto pelo terminal/cmd
+$ cd foodfy
 
 # Execute a aplicação
 $ npm start
@@ -107,6 +168,7 @@ $ npm start
 # O servidor inciará na porta:3000 - acesse http://localhost:3000
 
 ```
+
 ---
 
 ## Autor <a name="-autor" style="text-decoration:none"></a>
