@@ -128,7 +128,7 @@ Depois de ligar o PostgreSQL, acesse o pgAdmin (o programa é instalado junto co
 
 #### Observações
 
-Pode ser que durante este processo de configuração do banco de dados uma senha do postgres seja pedida. Em alguns casos a senha padrão é *admin*.
+Pode ser que durante este processo de configuração do banco de dados uma senha do postgres seja pedida. Em alguns casos a senha padrão é *admin*. Se você escolher uma senha diferente, deverá alterá-la no arquivo [db.js](https://github.com/emanuelmassafera/foodfy/blob/master/src/config/db.js).
 
 ### Por fim, o último passo é configurar o Mailtrap
 
