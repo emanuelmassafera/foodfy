@@ -42,6 +42,7 @@ Foodfy é um site de receitas completo, que conta com parte de visita ao públic
 - **[Bcrypt](https://github.com/dcodeIO/bcrypt.js)**
 - **[Nodemailer](https://nodemailer.com/about/)**
 - **[Nunjucks](https://github.com/mozilla/nunjucks)**
+- **[Faker](https://github.com/Marak/Faker.js#readme)**
 
 ---
 
@@ -107,7 +108,7 @@ $ npm install
 
 #### Configurando o banco de dados
 
-Instale em seu computador o [PostgreSQL](https://www.postgresql.org/download/). Finalizando a instalação, ligue-o. 
+Instale em seu computador o [PostgreSQL](https://www.postgresql.org/download/) e o [Postbird](https://www.electronjs.org/apps/postbird). Finalizando as instalações, ligue o PostgreSQL. 
 
 No Windows, o processo para ligá-lo segue os seguintes passos:
 
@@ -124,11 +125,21 @@ $ .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" stop
 
 ```
 
-Depois de ligar o PostgreSQL, acesse o pgAdmin (o programa é instalado junto com o postgres) e crie um banco de dados com o nome de foodfy. Feito isso, clique na opção Restore do banco e carregue o arquivo [foodfy.sql](https://github.com/emanuelmassafera/foodfy/blob/master/src/foodfy.sql) presente neste respositório. Você pode checar se o banco foi restaurado verificando suas tabelas. Se tudo deu certo até aqui, o seu banco de dados já está criado. Caso queira, acesse o arquivo [pgAdmin.md](https://github.com/emanuelmassafera/foodfy/blob/master/pgAdmin.md) para ver as imagens destes passos.
+Depois de ligar o PostgreSQL, acesse o Postbird e crie um banco de dados com o nome de foodfy. Feito isso, clique na opção de importar um arquivo .sql e importe o arquivo [foodfydb.sql](https://github.com/emanuelmassafera/foodfy/blob/master/foodfydb.sql) presente neste respositório. Você pode checar se o banco foi importado verificando suas tabelas. Se tudo deu certo até aqui, o seu banco de dados já está criado. 
 
 #### Observações
 
-Pode ser que durante este processo de configuração do banco de dados uma senha do postgres seja pedida. Em alguns casos a senha padrão é *admin*. Se você escolher uma senha diferente, deverá indicá-la no arquivo [db.js](https://github.com/emanuelmassafera/foodfy/blob/master/src/config/db.js).
+Você deverá indicar suas informações de usuário e senha do postgres no arquivo [db.js](https://github.com/emanuelmassafera/foodfy/blob/master/src/config/db.js).
+
+#### Populando o banco de dados
+
+Para popular o banco de dados com informações fakes e geradas automaticamente, abra o terminal no diretório do projeto e execute o comando:
+
+```bash
+
+$ node seeds.js
+
+```
 
 ### Por fim, o último passo é configurar o Mailtrap
 
@@ -175,7 +186,7 @@ $ npm start
 
 #### Observações
 
-Ao acessar *localhost:3000* você estará na seção pública do foodfy. Para ter acesso ao setor administrativo entre em *localhost:3000/admin*. O administrador padrão do sitema tem o email *admin@admin.com* e senha *admin*.
+Ao acessar *localhost:3000* você estará na seção pública do foodfy. Para ter acesso ao setor administrativo entre em *localhost:3000/admin*. O administrador padrão do sitema tem o email *admin@admin.com* e senha *admin*. Os outros usuários que são gerados automaticamente possuem e-mails aleatórios e senha *1234*.
 
 ---
 
