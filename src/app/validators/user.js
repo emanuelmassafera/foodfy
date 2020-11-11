@@ -51,7 +51,7 @@ async function post(req, res, next) {
     if (user) {
         return res.render("private-access/user/create", {
             user: req.body,
-            error: "Usuário já cadastrado."
+            error: "Usuário já cadastrado"
         });
     }
 

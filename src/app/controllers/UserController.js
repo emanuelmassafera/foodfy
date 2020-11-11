@@ -8,7 +8,18 @@ module.exports = {
     async post(req, res) {
         const userId = await User.create(req.body);
 
-        return res.redirect("/admin/users");
+        let results = await User.all();
+        const users = results.rows;
+
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("private-access/user/list", {
+            success: "Usuário cadastrado com sucesso",
+            users,
+            session: req.session,
+            sessionIsAdmin
+        });
     },
 
     async list(req, res) {
@@ -25,7 +36,18 @@ module.exports = {
 
         await User.delete(req.body.id);
         
-        return res.redirect("/admin/users");
+        let results = await User.all();
+        const users = results.rows;
+
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("private-access/user/list", {
+            success: "Usuário removido com sucesso",
+            users,
+            session: req.session,
+            sessionIsAdmin
+        });
     },
 
     async edit(req, res) {
@@ -41,14 +63,19 @@ module.exports = {
     async put(req, res) {
         const keys = Object.keys(req.body);
 
-        for (key of keys) {
-            if (req.body[key] == "" && key != "isAdmin") {
-                return res.send("Please, fill all fields!");
-            }
-        }
-
         await User.update(req.body);
+        
+        let results = await User.all();
+        const users = results.rows;
 
-        return res.redirect(`/admin/users`);
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("private-access/user/list", {
+            success: "Usuário atualizado com sucesso",
+            users,
+            session: req.session,
+            sessionIsAdmin
+        });
     }
 }

@@ -1,235 +1,236 @@
 * {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
-    background-color: white;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
-    background-color: #111111;
-    width: 100%;
-    height: 80px;
-    margin-bottom: 50px;
+  background-color: #111111;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 50px;
 }
 
 .header {
-    display: flex;
-    width: 940px;
-    height: 27px;
-    margin: 30px auto;
-    text-align: left;
-    position: relative;
+  display: flex;
+  width: 940px;
+  height: 27px;
+  margin: 30px auto;
+  text-align: left;
+  position: relative;
 }
 
 .header .logo {
-    margin-right: 160px;
+  margin-right: 160px;
 }
 
 .header img {
-    position: absolute;
-    left: 0;
-    width: 90.6px;
-    height: 26.9px;
-    opacity: 100%;
-    color: #FFFFFF;
+  position: absolute;
+  left: 0;
+  width: 90.6px;
+  height: 26.9px;
+  opacity: 100%;
+  color: #ffffff;
 }
 
 .header .recipes {
-    opacity: 100%;
-    font-size: 15px;
-    text-decoration: none;
-    color: #999999;
-    line-height: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-right: 30px;
-    align-self: flex-end;
-    padding: 3px;
+  opacity: 100%;
+  font-size: 15px;
+  text-decoration: none;
+  color: #999999;
+  line-height: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 30px;
+  align-self: flex-end;
+  padding: 3px;
 }
 
 .header .chefs {
-    opacity: 100%;
-    font-size: 15px;
-    text-decoration: none;
-    color: #999999;
-    line-height: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    align-self: flex-end;
-    padding: 3px;
-    margin-right: 30px;
+  opacity: 100%;
+  font-size: 15px;
+  text-decoration: none;
+  color: #999999;
+  line-height: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  align-self: flex-end;
+  padding: 3px;
+  margin-right: 30px;
 }
 
 .header .users {
-    opacity: 100%;
-    font-size: 15px;
-    text-decoration: none;
-    color: #999999;
-    line-height: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    align-self: flex-end;
-    padding: 3px;
-    margin-right: 30px;
+  opacity: 100%;
+  font-size: 15px;
+  text-decoration: none;
+  color: #999999;
+  line-height: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  align-self: flex-end;
+  padding: 3px;
+  margin-right: 30px;
 }
 
 header .login-logout {
-    position: absolute;
-    box-sizing: border-box;
-    font-size: 15px;
-    text-decoration: none;
-    color: #999999;
-    line-height: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    right: 0;
-    transition: all 300ms;
-    background: #111111;
-    cursor: pointer;
+  position: absolute;
+  box-sizing: border-box;
+  font-size: 15px;
+  text-decoration: none;
+  color: #999999;
+  line-height: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  right: 0;
+  transition: all 300ms;
+  background: #111111;
+  cursor: pointer;
 }
 
 .header .login-logout:hover {
-    color: white;
+  color: white;
 }
 
 .links a.active {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 .recipes:hover {
-    transition: font-weight 300ms;
-    color: #FFFFFF;
+  transition: font-weight 300ms;
+  color: #ffffff;
 }
 
 .chefs:hover {
-    color: #FFFFFF;
-    transition: font-weight 300ms;
+  color: #ffffff;
+  transition: font-weight 300ms;
 }
 
 .users:hover {
-    color: #FFFFFF;
-    transition: font-weight 300ms;
+  color: #ffffff;
+  transition: font-weight 300ms;
 }
 
 .register {
-    width: 940px;
-    margin: 15px auto 50px auto;
+  width: 940px;
+  margin: 15px auto 50px auto;
 }
 
 .register .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 65px;
 }
 
 .register .title h2 {
-    font-size: 24px;
-    line-height: 29px;
-    color: #111111;
+  font-size: 24px;
+  line-height: 29px;
+  color: #111111;
 }
 
 .register .title .buttons button {
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    color: white;
-    opacity: 100%;
-    background-color: #6558C3;
-    cursor: pointer;
-    border-radius: 4px;
-    padding: 9px 45px;
-    margin-right: 16px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: white;
+  opacity: 100%;
+  background-color: #6558c3;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 9px 45px;
+  margin-right: 16px;
 }
 
 .register .title .buttons .delete {
-    background-color: #DC4747;
+  background-color: #dc4747;
 }
 
 .register .inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 33px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 33px;
 }
 
 .register .inputs p {
-    color: #111111;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 19px;
-    margin-bottom: 10px;
+  color: #111111;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  margin-bottom: 10px;
 }
 
 .register .inputs input {
-    padding-left: 20px;
-    margin-top: 10px;
-    width: 100%;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
-    height: 49px;
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: bold;
-    color: #555555;
-    box-sizing: border-box;
+  padding-left: 20px;
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  height: 49px;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: bold;
+  color: #555555;
+  box-sizing: border-box;
 }
 
 .register .inputs input::placeholder {
-    color: #999999;
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: 300;
+  color: #999999;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 300;
 }
 
 form #isAdm {
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
-    width: 15px;
-    height: 15px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  width: 15px;
+  height: 15px;
 }
 
 form label {
-    color: #111111;
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: bold;
+  color: #111111;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: bold;
 }
 
 @keyframes hidemessage {
-    to {
-        top: -50px;
-        opacity: 0;
-    }
+  to {
+    top: -50px;
+    opacity: 0;
+  }
 }
 
 .messages {
-    display: flex;
-    justify-content: center;
-    padding: 16px;
-    position: absolute;
-    width: 100%;
-    color: white;
-    top: 0;
-    opacity: 1;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  position: absolute;
+  width: 100%;
+  color: white;
+  top: 0;
+  opacity: 1;
 
-    animation: hidemessage 400ms 5s ease-out forwards;
+  animation: hidemessage 400ms 5s ease-out forwards;
 }
 
 .messages.error {
-    background-color: #e74c3c;
+  background-color: #e74c3c;
 }
 
 .messages.success {
-    background-color: rgb(122, 182, 30);
+  background-color: rgb(122, 182, 30);
 }

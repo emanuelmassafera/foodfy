@@ -51,8 +51,45 @@ module.exports = {
 
         const chefId  = await Chef.create(req.body, fileId);
 
-        return res.redirect(`/admin/chefs/${chefId}`);
 
+        results = await Chef.find(chefId);
+        const chef = results.rows[0];
+
+        if (!chef) return res.send("Chef not found!");
+
+        results = await Chef.findRecipes(chef.id);
+        let recipes = results.rows;
+
+        for (let index = 0; index < recipes.length; index++) {
+            results = await Recipe.files(recipes[index].id);
+            const files = results.rows.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }));
+
+            if(files[0]) {
+                recipes[index].image = files[0].src;
+            } else {
+                recipes[index].image = "//placehold.it/500x360";
+            }
+        }
+
+        results = await Chef.files(chef.id);
+        const files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }));
+
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("private-access/chef/show", { 
+            chef, recipes, 
+            files, 
+            session: req.session, 
+            sessionIsAdmin,
+            success: "Chef cadastrado com sucesso", 
+        });
     },
 
     async show(req, res) {
@@ -136,7 +173,46 @@ module.exports = {
 
         await Chef.update(req.body, fileId);
 
-        return res.redirect(`/admin/chefs/${req.body.id}`);
+
+
+        results = await Chef.find(req.body.id);
+        const chef = results.rows[0];
+
+        if (!chef) return res.send("Chef not found!");
+
+        results = await Chef.findRecipes(chef.id);
+        let recipes = results.rows;
+
+        for (let index = 0; index < recipes.length; index++) {
+            results = await Recipe.files(recipes[index].id);
+            const files = results.rows.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }));
+
+            if(files[0]) {
+                recipes[index].image = files[0].src;
+            } else {
+                recipes[index].image = "//placehold.it/500x360";
+            }
+        }
+
+        results = await Chef.files(chef.id);
+        const files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }));
+
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("private-access/chef/show", { 
+            chef, recipes, 
+            files, 
+            session: req.session, 
+            sessionIsAdmin,
+            success: "Chef atualizado com sucesso", 
+        });
     },
 
     async delete(req, res) {
@@ -144,10 +220,61 @@ module.exports = {
 
         if (results.rows[0].total_recipes == 0) {
             await Chef.delete(req.body.id);
-            return res.redirect("/admin/chefs");
+
+            results = await Chef.all();
+            let chefs = results.rows;
+
+            for (let index = 0; index < chefs.length; index++) {
+                results = await Chef.files(chefs[index].id);
+                const files = results.rows.map(file => ({
+                    ...file,
+                    src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+                }));
+
+                if(files[0]) {
+                    chefs[index].image = files[0].src;
+                } else {
+                    chefs[index].image = "//placehold.it/500x360";
+                }
+            }
+
+            results = await User.isAdmin(req.session.userId);
+            const sessionIsAdmin = results.rows[0];
+
+            return res.render("private-access/chef/list", { 
+                chefs, 
+                session: req.session, 
+                sessionIsAdmin,
+                success: "Chef removido com sucesso",
+            });
 
         } else {
-            return res.send("Chefs who have recipes cannot be deleted");
+            results = await Chef.all();
+            let chefs = results.rows;
+
+            for (let index = 0; index < chefs.length; index++) {
+                results = await Chef.files(chefs[index].id);
+                const files = results.rows.map(file => ({
+                    ...file,
+                    src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+                }));
+
+                if(files[0]) {
+                    chefs[index].image = files[0].src;
+                } else {
+                    chefs[index].image = "//placehold.it/500x360";
+                }
+            }
+
+            results = await User.isAdmin(req.session.userId);
+            const sessionIsAdmin = results.rows[0];
+
+            return res.render("private-access/chef/list", { 
+                chefs, 
+                session: req.session, 
+                sessionIsAdmin,
+                error: "Chefs com receitas cadastradas não podem ser removidos",
+            });
 
         }
     }
