@@ -9,33 +9,40 @@ module.exports = {
         return db.query(query);
     },
 
-    create(data, userId) {
-        const query = `
-            INSERT INTO recipes (
-                chef_id,
-                title,
-                ingredients,
-                preparation,
-                information,
-                created_at,
-                updated_at,
-                user_id
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
-            RETURNING id
-        `;
+    async create(data, userId) {
+        try {
+            const query = `
+                INSERT INTO recipes (
+                    chef_id,
+                    title,
+                    ingredients,
+                    preparation,
+                    information,
+                    created_at,
+                    updated_at,
+                    user_id
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
+                RETURNING id
+            `;
+    
+            const values = [
+                data.chef,
+                data.title,
+                data.ingredients,
+                data.preparation,
+                data.information,
+                date(Date.now()).iso,
+                date(Date.now()).iso,
+                data.userId || userId
+            ];
+    
+            const results = await db.query(query, values);
 
-        const values = [
-            data.chef,
-            data.title,
-            data.ingredients,
-            data.preparation,
-            data.information,
-            date(Date.now()).iso,
-            date(Date.now()).iso,
-            userId
-        ];
+            return results.rows[0].id;
 
-        return db.query(query, values);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
     find(id) {

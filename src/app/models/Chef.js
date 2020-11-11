@@ -10,23 +10,31 @@ module.exports = {
         return db.query(query);
     },
 
-    create(data, file_id) {
-        const query = `
-            INSERT INTO chefs (
-                name,
-                created_at,
-                file_id
-            ) VALUES ($1, $2, $3) 
-            RETURNING id
-        `;
+    async create(data, file_id) {
 
-        const values = [
-            data.name,
-            date(Date.now()).iso,
-            file_id
-        ];
+        try {
+            const query = `
+                INSERT INTO chefs (
+                    name,
+                    created_at,
+                    file_id
+                ) VALUES ($1, $2, $3) 
+                RETURNING id
+            `;
+    
+            const values = [
+                data.name,
+                date(Date.now()).iso,
+                data.fileId || file_id
+            ];
+    
+            const results = await db.query(query, values);
 
-        return db.query(query, values);
+            return results.rows[0].id;
+
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     find(id) {

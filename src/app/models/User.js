@@ -65,7 +65,7 @@ module.exports = {
             const values = [
                 data.name,
                 data.email,
-                passwordHash,
+                data.password || passwordHash,
                 isAdmin
             ];
 

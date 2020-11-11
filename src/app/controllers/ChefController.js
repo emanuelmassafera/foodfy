@@ -49,8 +49,7 @@ module.exports = {
         let results = await filesPromises[0];
         const fileId = results.rows[0].id;
 
-        results = await Chef.create(req.body, fileId);
-        const chefId = results.rows[0].id;
+        const chefId  = await Chef.create(req.body, fileId);
 
         return res.redirect(`/admin/chefs/${chefId}`);
 

@@ -47,9 +47,8 @@ module.exports = {
         if (req.files.length == 0) {
             return res.send("Select at least one image!");
         }
-
-        let results = await Recipe.create(req.body, req.session.userId);
-        const recipeId = results.rows[0].id;
+        
+        const recipeId = await Recipe.create(req.body, req.session.userId);
 
         const filesPromises = req.files.map(file => File.create({ ...file, recipe_id: recipeId, session: req.session }));
         await Promise.all(filesPromises);
