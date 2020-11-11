@@ -6,7 +6,7 @@
 
 <p align="center">🍴 Site de receitas chamado Foodfy 🍴</p>
 
-<h4 align="center">🚧   Em construção 🚀 🚧</h4>
+<h4 align="center">🚧   Concluído 🚀 🚧</h4>
 
 ---
 
