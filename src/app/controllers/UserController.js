@@ -64,16 +64,13 @@ module.exports = {
         const keys = Object.keys(req.body);
 
         await User.update(req.body);
-        
-        let results = await User.all();
-        const users = results.rows;
 
-        results = await User.isAdmin(req.session.userId);
+        let results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("private-access/user/list", {
+        return res.render("private-access/user/edit", {
             success: "Usuário atualizado com sucesso",
-            users,
+            user: req.body,
             session: req.session,
             sessionIsAdmin
         });
