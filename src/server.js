@@ -11,6 +11,9 @@ server.use(express.static("public"));
 server.use(express.urlencoded({ extended: true }));  // Permite usar o req.body
 server.use(methodOverride("_method"));
 server.use(routes);
+server.get('*', function(req, res){
+    res.status(404).render("not-found/not-found");
+});
 
 server.set("view engine", "njk");
 
