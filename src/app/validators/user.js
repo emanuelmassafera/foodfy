@@ -35,6 +35,91 @@ async function show(req, res, next) {
     next();
 }
 
+async function create(req, res, next) {
+
+    let results = await User.all();
+    const users = results.rows;
+
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
+
+    if (!sessionIsAdmin) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    next();
+}
+
+async function edit(req, res, next) {
+
+    const id = req.params.id;
+
+    let results = await User.all();
+    const users = results.rows;
+
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
+
+    if (!sessionIsAdmin && id != req.session.userId) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    next();
+}
+
+async function put(req, res, next) {
+
+    const id = req.body.id;
+
+    let results = await User.all();
+    const users = results.rows;
+
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
+
+    if (!sessionIsAdmin && id != req.session.userId) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    next();
+}
+
+async function deleteValidator(req, res, next) {
+
+    const id = req.body.id;
+
+    let results = await User.all();
+    const users = results.rows;
+
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
+
+    if (!sessionIsAdmin) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    if (id == req.session.userId) return res.render("private-access/user/list", {
+        error: "Ação inválida",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    next();
+}
+
 async function post(req, res, next) {
     const fillAllFields = checkAllFields(req.body);
 
@@ -77,5 +162,9 @@ async function update(req, res, next) {
 module.exports = {
     post,
     show,
-    update
+    update,
+    create,
+    edit,
+    put,
+    deleteValidator
 }
