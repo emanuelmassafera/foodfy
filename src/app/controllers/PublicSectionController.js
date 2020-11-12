@@ -80,7 +80,7 @@ module.exports = {
         let results = await Recipe.find(req.params.id);
         let recipe = results.rows[0];
 
-        if (!recipe) return res.send("Recipe not found!");
+        if (!recipe) return res.render("not-found/not-found");
 
 
         results = await Recipe.files(recipe.id);

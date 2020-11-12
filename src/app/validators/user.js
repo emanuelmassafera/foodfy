@@ -7,7 +7,7 @@ function checkAllFields(body) {
         if (body[key] == "") {
             return {
                 user: body,
-                error: "Preencha todos os campos."
+                error: "Preencha todos os campos"
             };
         }
     }
@@ -144,10 +144,16 @@ async function post(req, res, next) {
 }
 
 async function update(req, res, next) {
-    const fillAllFields = checkAllFields(req.body);
+    const keys = Object.keys(req.body);
 
-    if(fillAllFields) {
-        return res.render("private-access/user/list", fillAllFields);
+    for (key of keys) {
+        if (req.body[key] == "") {
+            return res.render("private-access/user/edit", {
+                user: req.body,
+                session: req.session,
+                error: "Preencha todos os campos"
+            });
+        }
     }
 
     const { id } = req.body;

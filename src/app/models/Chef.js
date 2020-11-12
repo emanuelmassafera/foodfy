@@ -3,11 +3,17 @@ const { date } = require("../../lib/utils");
 
 module.exports = {
     all() {
-        const query = `SELECT chefs.*, count(recipes) AS total_recipes  
-        FROM chefs LEFT JOIN recipes ON (chefs.id = recipes.chef_id) 
-        GROUP BY chefs.id`;
+        try {
+            
+            const query = `SELECT chefs.*, count(recipes) AS total_recipes  
+            FROM chefs LEFT JOIN recipes ON (chefs.id = recipes.chef_id) 
+            GROUP BY chefs.id`;
+    
+            return db.query(query);
 
-        return db.query(query);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
     async create(data, file_id) {
@@ -33,49 +39,70 @@ module.exports = {
             return results.rows[0].id;
 
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     },
 
     find(id) {
-        return db.query(`SELECT chefs.*, count(recipes) AS total_recipes  
-        FROM chefs LEFT JOIN recipes ON (chefs.id = recipes.chef_id) 
-        WHERE chefs.id=$1  
-        GROUP BY chefs.id`, [id]);
+        try {
+            
+            return db.query(`SELECT chefs.*, count(recipes) AS total_recipes  
+            FROM chefs LEFT JOIN recipes ON (chefs.id = recipes.chef_id) 
+            WHERE chefs.id=$1  
+            GROUP BY chefs.id`, [id]);
+
+        } catch (error) {
+            console.error(error);
+        }
     },
 
     findRecipes(id) {
-        return db.query(`SELECT recipes.* FROM recipes 
-        WHERE recipes.chef_id=$1 ORDER BY recipes.created_at DESC`, [id]);
+        try {
+            return db.query(`SELECT recipes.* FROM recipes 
+            WHERE recipes.chef_id=$1 ORDER BY recipes.created_at DESC`, [id]);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
     update(data, file_id) {
-        const query = `
-            UPDATE chefs SET 
-                name=($1),
-                file_id=($2)
-            WHERE id=($3)
-        `;
-
-        const values = [
-            data.name,
-            file_id,
-            data.id
-        ];
-
-        return db.query(query, values);
+        try {
+            const query = `
+                UPDATE chefs SET 
+                    name=($1),
+                    file_id=($2)
+                WHERE id=($3)
+            `;
+    
+            const values = [
+                data.name,
+                file_id,
+                data.id
+            ];
+    
+            return db.query(query, values);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
     async delete(id) {
-
-        await db.query(`DELETE FROM recipes_files WHERE recipes_files.recipe_id = $1`, [id]);
-
-        return db.query(`DELETE FROM chefs WHERE id=$1`, [id]);
+        try {
+            await db.query(`DELETE FROM recipes_files WHERE recipes_files.recipe_id = $1`, [id]);
+    
+            return db.query(`DELETE FROM chefs WHERE id=$1`, [id]);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
     files(id) {
-        return db.query(`
-        SELECT files.* FROM files LEFT JOIN chefs ON (files.id = chefs.file_id) WHERE chefs.id = $1
-        `, [id]);
+        try {
+            return db.query(`
+            SELECT files.* FROM files LEFT JOIN chefs ON (files.id = chefs.file_id) WHERE chefs.id = $1
+            `, [id]);
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

@@ -37,12 +37,18 @@ module.exports = {
 
         for (key of keys) {
             if (req.body[key] == "" && key != "information") {
-                return res.send("Please, fill all fields!");
+                return res.render("private-access/chef/create", { 
+                    session: req.session,
+                    error: "Preencha todos os campos",
+                });
             }
         }
 
         if (req.files.length == 0) {
-            return res.send("Select at least one image!");
+            return res.render("private-access/chef/create", { 
+                session: req.session,
+                error: "Selecione ao menos uma imagem",
+            });
         }
 
         const filesPromises = req.files.map(file => File.createChefFile({ ...file }));
@@ -55,7 +61,7 @@ module.exports = {
         results = await Chef.find(chefId);
         const chef = results.rows[0];
 
-        if (!chef) return res.send("Chef not found!");
+        if (!chef) return res.render("unexpected-error/unexpected-error");
 
         results = await Chef.findRecipes(chef.id);
         let recipes = results.rows;
@@ -96,7 +102,7 @@ module.exports = {
         let results = await Chef.find(req.params.id);
         const chef = results.rows[0];
 
-        if (!chef) return res.send("Chef not found!");
+        if (!chef) return res.render("not-found/not-found");
 
         results = await Chef.findRecipes(chef.id);
         let recipes = results.rows;
@@ -131,7 +137,7 @@ module.exports = {
         let results = await Chef.find(req.params.id);
         const chef = results.rows[0];
 
-        if (!chef) return res.send("Chef not found!");
+        if (!chef) return res.render("unexpected-error/unexpected-error");
 
         results = await Chef.files(chef.id);
         let files = results.rows;
@@ -148,7 +154,11 @@ module.exports = {
 
         for (key of keys) {
             if (req.body[key] == "" && key != "removed_files") {
-                return res.send("Please, fill all fields!");
+                return res.render("private-access/chef/edit", { 
+                    session: req.session,
+                    error: "Preencha todos os campos",
+                    chef: req.body,
+                });
             }
         }
 
@@ -178,7 +188,7 @@ module.exports = {
         results = await Chef.find(req.body.id);
         const chef = results.rows[0];
 
-        if (!chef) return res.send("Chef not found!");
+        if (!chef) return res.render("unexpected-error/unexpected-error");
 
         results = await Chef.findRecipes(chef.id);
         let recipes = results.rows;

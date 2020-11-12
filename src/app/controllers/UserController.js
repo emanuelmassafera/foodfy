@@ -68,9 +68,12 @@ module.exports = {
         let results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("private-access/user/edit", {
+        results = await User.all();
+        const users = results.rows;
+
+        return res.render("private-access/user/list", {
             success: "Usuário atualizado com sucesso",
-            user: req.body,
+            users,
             session: req.session,
             sessionIsAdmin
         });

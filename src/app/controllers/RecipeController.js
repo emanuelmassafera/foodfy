@@ -38,14 +38,25 @@ module.exports = {
     async post(req, res) {
         const keys = Object.keys(req.body);
 
+        let results = await Recipe.chefSelectOptions();
+        const options = results.rows;
+
         for (key of keys) {
             if (req.body[key] == "" && key != "information") {
-                return res.send("Please, fill all fields!");
+                return res.render("private-access/recipe/create", { 
+                    session: req.session,
+                    error: "Preencha todos os campos",
+                    chefOptions: options
+                });
             }
         }
 
         if (req.files.length == 0) {
-            return res.send("Select at least one image!");
+            return res.render("private-access/recipe/create", { 
+                session: req.session,
+                error: "Selecione o menos uma imagem",
+                chefOptions: options
+            });
         }
         
         const recipeId = await Recipe.create(req.body, req.session.userId);
@@ -55,10 +66,10 @@ module.exports = {
 
 
 
-        let results = await Recipe.find(recipeId);
+        results = await Recipe.find(recipeId);
         const recipe = results.rows[0];
 
-        if (!recipe) return res.send("Recipe not found!");
+        if (!recipe) return res.render("unexpected-error/unexpected-error");
 
         results = await Recipe.files(recipe.id);
         const files = results.rows.map(file => ({
@@ -83,7 +94,7 @@ module.exports = {
         let results = await Recipe.find(req.params.id);
         const recipe = results.rows[0];
 
-        if (!recipe) return res.send("Recipe not found!");
+        if (!recipe) return res.render("not-found/not-found");
 
         results = await Recipe.files(recipe.id);
         const files = results.rows.map(file => ({
@@ -102,7 +113,7 @@ module.exports = {
         let results = await Recipe.find(req.params.id);
         const recipe = results.rows[0];
 
-        if (!recipe) return res.send("Recipe not found!");
+        if (!recipe) return res.render("not-found/not-found");
 
         results = await Recipe.chefSelectOptions();
         const options = results.rows;
@@ -122,7 +133,7 @@ module.exports = {
 
         for (key of keys) {
             if (req.body[key] == "" && key != "removed_files" && key != "information") {
-                return res.send("Please, fill all fields!");
+                return res.render("unexpected-error/unexpected-error");
             }
         }
 
@@ -148,7 +159,7 @@ module.exports = {
         let results = await Recipe.find(req.body.id);
         const recipe = results.rows[0];
 
-        if (!recipe) return res.send("Recipe not found!");
+        if (!recipe) return res.render("unexpected-error/unexpected-error");
 
         results = await Recipe.files(recipe.id);
         const files = results.rows.map(file => ({
