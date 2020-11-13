@@ -188,6 +188,8 @@ $ npm start
 
 Ao acessar *localhost:3000* você estará na seção pública do foodfy. Para ter acesso ao setor administrativo entre em *localhost:3000/admin*. O administrador padrão do sitema tem o email *admin@admin.com* e senha *admin*. Os outros usuários que são gerados automaticamente possuem e-mails aleatórios e senha *1234*.
 
+Pode ser que ao deletar um dos registros gerados automaticamente com o seeds, a imagem de referência de todos os outros seja perdida. Caso isto ocorra, crie outra imagem com o nome de *placeholder.png* na pasta *public/images*.
+
 ---
 
 ## Autor <a name="-autor" style="text-decoration:none"></a>
