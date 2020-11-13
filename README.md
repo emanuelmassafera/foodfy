@@ -143,7 +143,7 @@ $ node seeds.js
 
 ### Por fim, o último passo é configurar o Mailtrap
 
-O Mailtrap será responsável por simular uma caixa de e-mails para as funcionalidade de criar um usuário e de recuperar a senha. 
+O Mailtrap será responsável por simular uma caixa de e-mails para as funcionalidades de criar um usuário (a senha de acesso será enviada por e-mail) e de recuperar a senha. 
 
 #### Configurando o Mailtrap
 
