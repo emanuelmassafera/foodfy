@@ -7,10 +7,17 @@ for (item of menuItems){
     }
 }
 
+console.log(_currentPage);
+let uploadLimit = 5;
+
+if(_currentPage.includes("chefs")) {
+    uploadLimit = 1;
+}
+
 const PhotosUpload = {
     input: "",
     preview: document.querySelector("#photos-preview"),
-    uploadLimit: 5,
+    uploadLimit: uploadLimit,
     files: [],
     placeholderChefEdit: document.querySelector("#chef-edit-placeholder"),
 

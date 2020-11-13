@@ -27,18 +27,34 @@
         <div class="image-chef">
             <h3>Avatar</h3>
 
-            <input type="text" id="chef-edit-placeholder" placeholder="{{files[0].name}}" disabled>
+            <div class="photos-container">
+                <div id="photos-upload">
+                    <p>Enviar avatar</p>
+                    
+                    <input 
+                        type="file" 
+                        name="photos" 
+                        id="photos-input" 
+                        required
+                        multiple="multiple" 
+                        accept="image/*" 
+                        onchange="PhotosUpload.handleFileInput(event)"
+                    >
+                </div>
 
-            <div id="photos-upload">
-                <p>Enviar avatar</p>
-                <input 
-                    type="file" 
-                    name="photos" 
-                    id="photos-input" 
-                    multiple="multiple" 
-                    accept="image/*" 
-                    onchange="PhotosUpload.handleFileInput(event)"
-                >
+                <div id="photos-preview">
+                    {% if files %}
+
+                        {% for image in files %}
+                            <div class="photo" id="{{image.id}}">
+                                <img src="{{image.src}}" alt="{{image.name}}">
+                                <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                            </div>
+                        {% endfor %}
+
+                        <input type="hidden" name="removed_files">
+                    {% endif %}
+                </div>
             </div>
 
         </div>
