@@ -33,7 +33,7 @@
     "nunjucks": "^3.2.1",
     "pg": "^8.2.2",
     "yargs-parser": ">=13.1.2",
-    "object-path": ">=0.11.5"
+    "object-path": ">=0.11.8"
   },
   "devDependencies": {
     "browser-sync": "^2.26.14",
